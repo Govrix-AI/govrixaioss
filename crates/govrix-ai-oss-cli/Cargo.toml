@@ -1,0 +1,24 @@
+[package]
+name = "govrix-ai-oss-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Govrix AI OSS command-line interface"
+
+[[bin]]
+name = "govrix-ai-oss-cli"
+path = "src/main.rs"
+
+[dependencies]
+govrix-ai-oss-common = { workspace = true }
+clap = { workspace = true }
+reqwest = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+comfy-table = { workspace = true }
+serde_yaml = "0.9"
