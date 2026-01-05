@@ -1,0 +1,16 @@
+[package]
+name = "govrix-ai-oss-reports"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Report generation for Govrix AI OSS (HTML, JSON, PDF)"
+
+[dependencies]
+govrix-ai-oss-common = { workspace = true }
+minijinja = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
