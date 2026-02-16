@@ -1,0 +1,88 @@
+version: '3.9'
+
+# ── Volumes ───────────────────────────────────────────────────────────────────
+volumes:
+  pgdata:
+    driver: local
+
+# ── Networks ──────────────────────────────────────────────────────────────────
+networks:
+  govrix-ai-oss:
+    driver: bridge
+
+# ── Services ──────────────────────────────────────────────────────────────────
+services:
+
+  # ── PostgreSQL + TimescaleDB ───────────────────────────────────────────────
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: govrix-ai-oss-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: govrix
+      POSTGRES_USER: govrix
+      POSTGRES_PASSWORD: govrix_ai_oss_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Run init SQL on first start
+      - ../init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - govrix-ai-oss
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U govrix -d govrix"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Govrix AI OSS Proxy + API ──────────────────────────────────────────────────
+  proxy:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: govrix-ai-oss-proxy
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      GOVRIX_DATABASE_URL: postgres://govrix:govrix_ai_oss_dev@postgres:5432/govrix
+      GOVRIX_PROXY_PORT: "4000"
+      GOVRIX_API_PORT: "4001"
+      RUST_LOG: "govrix_ai_oss_proxy=info,tower_http=debug"
+      GOVRIX_PROXY__UPSTREAM_OPENAI: "https://api.openai.com"
+    ports:
+      - "4000:4000"   # Proxy (hot path)
+      - "4001:4001"   # REST API
+      - "9090:9090"   # Prometheus metrics
+    networks:
+      - govrix-ai-oss
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:4001/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # ── React Dashboard (nginx) ────────────────────────────────────────────────
+  dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
+    container_name: govrix-ai-oss-dashboard
+    restart: unless-stopped
+    depends_on:
+      proxy:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    networks:
+      - govrix-ai-oss
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:3000 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
