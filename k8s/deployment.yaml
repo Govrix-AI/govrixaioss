@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govrix-ai-oss
+  namespace: govrix
+  labels:
+    app: govrix-ai-oss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: govrix-ai-oss
+  template:
+    metadata:
+      labels:
+        app: govrix-ai-oss
+    spec:
+      containers:
+      - name: govrix-ai-oss
+        image: govrix-ai-oss:latest
+        ports:
+        - containerPort: 4000
+          name: proxy
+        - containerPort: 4001
+          name: api
+        env:
+        - name: GOVRIX_AI_OSS_LOG
+          value: "govrix_ai_oss_proxy=info"
+        - name: RUST_LOG
+          value: "govrix_ai_oss_proxy=info"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 4001
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 4001
+          initialDelaySeconds: 5
+          periodSeconds: 10
