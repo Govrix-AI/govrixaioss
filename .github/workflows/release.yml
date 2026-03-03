@@ -1,0 +1,103 @@
+name: Release
+
+on:
+  # Only build images after CI passes on main
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  # Also trigger on version tags
+  push:
+    tags: ["v*"]
+  # Manual trigger
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  PROXY_IMAGE: ghcr.io/govrix-ai/govrix-ai-oss
+  DASHBOARD_IMAGE: ghcr.io/govrix-ai/govrix-ai-oss-dashboard
+
+jobs:
+  build-and-push:
+    name: Build & push Docker images
+    runs-on: ubuntu-latest
+    # Skip if CI workflow failed (workflow_run trigger)
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU (multi-platform)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute image tags
+        id: meta
+        run: |
+          SHA="${GITHUB_SHA::7}"
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
+          # Build tag list
+          PROXY_TAGS="${{ env.PROXY_IMAGE }}:latest,${{ env.PROXY_IMAGE }}:sha-${SHA}"
+          DASH_TAGS="${{ env.DASHBOARD_IMAGE }}:latest,${{ env.DASHBOARD_IMAGE }}:sha-${SHA}"
+
+          # If this is a version tag (v*), add semver tags
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+            PROXY_TAGS="${PROXY_TAGS},${{ env.PROXY_IMAGE }}:${VERSION}"
+            DASH_TAGS="${DASH_TAGS},${{ env.DASHBOARD_IMAGE }}:${VERSION}"
+          fi
+
+          echo "proxy_tags=$PROXY_TAGS" >> $GITHUB_OUTPUT
+          echo "dash_tags=$DASH_TAGS" >> $GITHUB_OUTPUT
+
+      - name: Build and push proxy image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.proxy_tags }}
+          labels: |
+            org.opencontainers.image.title=Govrix AI OSS Proxy
+            org.opencontainers.image.description=Transparent AI agent observability proxy
+            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.licenses=Apache-2.0
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push dashboard image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.dashboard
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.dash_tags }}
+          labels: |
+            org.opencontainers.image.title=Govrix AI OSS Dashboard
+            org.opencontainers.image.description=React dashboard for Govrix AI observability
+            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.licenses=Apache-2.0
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
