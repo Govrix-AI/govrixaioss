@@ -31,8 +31,8 @@ Thank you for your interest in contributing. Govrix AI OSS is Apache 2.0 license
 ### First-time setup
 
 ```bash
-git clone https://github.com/Govrix-AI/govrixai.git
-cd govrix-ai-oss
+git clone https://github.com/Govrix-AI/govrixaioss.git
+cd govrixaioss
 ./scripts/setup.sh
 ```
 

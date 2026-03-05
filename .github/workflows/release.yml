@@ -77,8 +77,8 @@ jobs:
           labels: |
             org.opencontainers.image.title=Govrix AI OSS Proxy
             org.opencontainers.image.description=Transparent AI agent observability proxy
-            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixai
-            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixaioss
+            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixaioss
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha
@@ -95,8 +95,8 @@ jobs:
           labels: |
             org.opencontainers.image.title=Govrix AI OSS Dashboard
             org.opencontainers.image.description=React dashboard for Govrix AI observability
-            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixai
-            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixai
+            org.opencontainers.image.source=https://github.com/Govrix-AI/govrixaioss
+            org.opencontainers.image.url=https://github.com/Govrix-AI/govrixaioss
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha
