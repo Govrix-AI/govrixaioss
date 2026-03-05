@@ -18,7 +18,7 @@ set -euo pipefail
 # ── Config ────────────────────────────────────────────────────────────────────
 GOVRIX_DIR="${GOVRIX_DIR:-$HOME/.govrix}"
 REPO_RAW_BASE="https://govrix.dev"
-REPO_URL="https://github.com/Govrix-AI/govrixai"
+REPO_URL="https://github.com/Govrix-AI/govrixaioss"
 MODE="user"
 
 # ── Colors (disabled if not a terminal) ──────────────────────────────────────

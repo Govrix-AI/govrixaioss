@@ -19,7 +19,7 @@
 <br/>
 
 <p align="center">
-  <b>⭐️ If you find Govrix AI OSS useful, <a href="https://github.com/Govrix-AI/govrixai">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
+  <b>⭐️ If you find Govrix AI OSS useful, <a href="https://github.com/Govrix-AI/govrixaioss">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
 </p>
 
 <p align="center">
@@ -44,7 +44,7 @@
 
 <p align="center">
   <a href="#-quick-start"><b>Getting Started</b></a> ·
-  <a href="https://github.com/Govrix-AI/govrixai/issues"><b>Issues</b></a> ·
+  <a href="https://github.com/Govrix-AI/govrixaioss/issues"><b>Issues</b></a> ·
   <a href="#-govrix-platform-enterprise"><b>Enterprise</b></a>
 </p>
 
@@ -132,10 +132,10 @@ Now every AI call is automatically **logged**, **costed**, **scanned for PII**, 
 
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/Govrix-AI/govrixai/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.sh | bash
 
 # Windows (PowerShell as Admin)
-iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixai/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.ps1 | iex
 ```
 
 ### Option B: Pre-built Docker Images (no Rust toolchain needed)
@@ -518,8 +518,8 @@ rustc --version && cargo --version && node --version && pnpm --version && docker
 
 ```bash
 # 1. Clone
-git clone https://github.com/Govrix-AI/govrixai.git
-cd govrix-ai-oss
+git clone https://github.com/Govrix-AI/govrixaioss.git
+cd govrixaioss
 
 # 2. Start the database
 docker compose -f docker/docker-compose.yml up -d postgres
@@ -681,7 +681,7 @@ make dev               # start everything with hot-reload
 ---
 
 <p align="center">
-  <a href="https://github.com/Govrix-AI/govrixai">⭐ Star on GitHub</a> · <a href="https://github.com/Govrix-AI/govrixai/issues">🐛 Report Bug</a> · <a href="https://github.com/Govrix-AI/govrixai/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
+  <a href="https://github.com/Govrix-AI/govrixaioss">⭐ Star on GitHub</a> · <a href="https://github.com/Govrix-AI/govrixaioss/issues">🐛 Report Bug</a> · <a href="https://github.com/Govrix-AI/govrixaioss/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
 </p>
 
 <p align="center"><sub>Govrix AI is an independent continuation of an earlier collaborative prototype.</sub></p>

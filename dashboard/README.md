@@ -1,6 +1,6 @@
 # Govrix AI OSS Dashboard
 
-A React + Vite dashboard for [Govrix AI OSS](https://github.com/Govrix-AI/govrixai) — open-source AI agent observability.
+A React + Vite dashboard for [Govrix AI OSS](https://github.com/Govrix-AI/govrixaioss) — open-source AI agent observability.
 
 ## Pages
 
