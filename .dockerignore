@@ -1,0 +1,36 @@
+# Git
+.git
+.github
+.gitignore
+
+# Build artifacts
+target/
+dashboard/node_modules/
+dashboard/dist/
+remotion/node_modules/
+
+# Docs & context (not needed in image)
+docs/
+.context/
+*.md
+!dashboard/README.md
+
+# Enterprise crates (not part of OSS build)
+crates/govrix-common/
+crates/govrix-identity/
+crates/govrix-keygen/
+crates/govrix-policy/
+crates/govrix-server/
+
+# IDE / local
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Scripts & k8s (not needed in image)
+scripts/
+k8s/
+remotion/
+tests/
+init/
