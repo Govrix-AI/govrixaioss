@@ -661,3 +661,5 @@ make dev               # start everything with hot-reload
 <p align="center">
   <a href="https://github.com/Govrix-AI/govrixai">⭐ Star on GitHub</a> · <a href="https://github.com/Govrix-AI/govrixai/issues">🐛 Report Bug</a> · <a href="https://github.com/Govrix-AI/govrixai/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
 </p>
+
+<p align="center"><sub>Govrix AI is an independent continuation of an earlier collaborative prototype.</sub></p>
