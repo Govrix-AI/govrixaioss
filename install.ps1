@@ -250,11 +250,10 @@ POSTGRES_DB=govrix
 POSTGRES_PASSWORD=$dbPass
 
 GOVRIX_API_KEY=$apiKey
-GOVRIX_STORE__DATABASE_URL=postgresql://govrix:${dbPass}@postgres:5432/govrix
+GOVRIX_DATABASE_URL=postgresql://govrix:${dbPass}@postgres:5432/govrix
 
-GOVRIX_PROXY__LISTEN_ADDR=0.0.0.0:4000
-GOVRIX_API__LISTEN_ADDR=0.0.0.0:4001
-GOVRIX_METRICS__LISTEN_ADDR=0.0.0.0:9090
+GOVRIX_PROXY_PORT=4000
+GOVRIX_API_PORT=4001
 
 RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
 "@

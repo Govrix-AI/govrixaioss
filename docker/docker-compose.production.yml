@@ -43,8 +43,9 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      GOVRIX_STORE__DATABASE_URL: postgresql://${POSTGRES_USER:-govrix}:${POSTGRES_PASSWORD:-govrix_ai_oss_dev}@postgres:5432/${POSTGRES_DB:-govrix}
-      GOVRIX_PROXY__LISTEN_PORT: ${GOVRIX_PROXY_PORT:-4000}
+      GOVRIX_DATABASE_URL: postgresql://${POSTGRES_USER:-govrix}:${POSTGRES_PASSWORD:-govrix_ai_oss_dev}@postgres:5432/${POSTGRES_DB:-govrix}
+      GOVRIX_PROXY_PORT: ${GOVRIX_PROXY_PORT:-4000}
+      GOVRIX_API_PORT: ${GOVRIX_API_PORT:-4001}
       GOVRIX_API_KEY: ${GOVRIX_API_KEY}
       RUST_LOG: ${RUST_LOG:-govrix_ai_oss_proxy=info}
     ports:
@@ -53,7 +54,7 @@ services:
     networks:
       - govrix-ai-oss
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4001/health"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost:4001/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
