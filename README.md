@@ -38,6 +38,8 @@
   <a href="https://www.rust-lang.org"><img src="https://img.shields.io/badge/Rust-1.75+-DEA584?style=flat-square&logo=rust&logoColor=white" alt="Rust" /></a>
   <a href="https://react.dev"><img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" /></a>
   <a href="https://www.timescale.com"><img src="https://img.shields.io/badge/TimescaleDB-PG16-FDB515?style=flat-square&logo=postgresql&logoColor=white" alt="TimescaleDB" /></a>
+  <a href="https://github.com/Govrix-AI/govrixaioss/actions/workflows/ci.yml"><img src="https://github.com/Govrix-AI/govrixaioss/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://ghcr.io/govrix-ai/govrix-ai-oss"><img src="https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" /></a>
 </p>
 
 <p align="center">
@@ -136,11 +138,31 @@ curl -sSL https://raw.githubusercontent.com/Govrix-AI/govrixai/main/install.sh |
 iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixai/main/install.ps1 | iex
 ```
 
-### Option B: Clone & Run
+### Option B: Pre-built Docker Images (no Rust toolchain needed)
+
+Images are published to GitHub Container Registry on every push to `main`:
 
 ```bash
-git clone https://github.com/Govrix-AI/govrixai.git
-cd govrix-ai-oss
+# Pull the proxy
+docker pull ghcr.io/govrix-ai/govrix-ai-oss:latest
+
+# Pull the dashboard
+docker pull ghcr.io/govrix-ai/govrix-ai-oss-dashboard:latest
+```
+
+Both images are multi-platform (`linux/amd64` + `linux/arm64`). Then start everything with:
+
+```bash
+git clone https://github.com/Govrix-AI/govrixaioss.git
+cd govrixaioss
+docker compose -f docker/docker-compose.yml up -d
+```
+
+### Option C: Clone & Build from Source
+
+```bash
+git clone https://github.com/Govrix-AI/govrixaioss.git
+cd govrixaioss
 docker compose -f docker/docker-compose.yml up -d
 ```
 
