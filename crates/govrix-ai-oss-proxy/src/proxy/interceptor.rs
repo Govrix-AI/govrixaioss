@@ -173,7 +173,8 @@ pub async fn log_request_event(ctx: &RequestContext, state: &InterceptorState) {
             }
         }
         Protocol::Mcp { server, .. } => {
-            if let Some(req) = govrix_ai_oss_common::protocols::mcp::parse_request(&ctx.request_body)
+            if let Some(req) =
+                govrix_ai_oss_common::protocols::mcp::parse_request(&ctx.request_body)
             {
                 let tool = govrix_ai_oss_common::protocols::mcp::extract_tool_name(&req);
                 event.tags = serde_json::json!({
