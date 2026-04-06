@@ -337,9 +337,7 @@ fn is_streaming_hint_from_headers(headers: &http::HeaderMap) -> bool {
         .unwrap_or(false)
 }
 
-fn detect_mcp_transport(
-    headers: &http::HeaderMap,
-) -> agentland_common::protocols::McpTransport {
+fn detect_mcp_transport(headers: &http::HeaderMap) -> agentland_common::protocols::McpTransport {
     if headers
         .get("accept")
         .and_then(|v| v.to_str().ok())

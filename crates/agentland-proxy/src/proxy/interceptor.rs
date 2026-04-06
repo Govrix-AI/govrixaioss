@@ -151,8 +151,7 @@ pub async fn log_request_event(ctx: &RequestContext, state: &InterceptorState) {
     // Parse request-specific fields
     match &ctx.protocol {
         Protocol::OpenAI { .. } => {
-            if let Some(req) =
-                agentland_common::protocols::openai::parse_request(&ctx.request_body)
+            if let Some(req) = agentland_common::protocols::openai::parse_request(&ctx.request_body)
             {
                 event.model = Some(req.model);
                 // Count tools defined in the request
@@ -173,9 +172,7 @@ pub async fn log_request_event(ctx: &RequestContext, state: &InterceptorState) {
             }
         }
         Protocol::Mcp { server, .. } => {
-            if let Some(req) =
-                agentland_common::protocols::mcp::parse_request(&ctx.request_body)
-            {
+            if let Some(req) = agentland_common::protocols::mcp::parse_request(&ctx.request_body) {
                 let tool = agentland_common::protocols::mcp::extract_tool_name(&req);
                 event.tags = serde_json::json!({
                     "mcp_server": server,
@@ -247,8 +244,7 @@ pub async fn log_response_event(
             if *streaming {
                 // For streaming, body is the accumulated SSE chunks
                 let data_lines = crate::proxy::streaming::parse_sse_data_lines(response_body);
-                let acc =
-                    agentland_common::protocols::openai::parse_streaming_chunks(&data_lines);
+                let acc = agentland_common::protocols::openai::parse_streaming_chunks(&data_lines);
                 event.model = acc.model.or_else(|| {
                     agentland_common::protocols::openai::parse_model(&ctx.request_body)
                 });
@@ -308,8 +304,7 @@ pub async fn log_response_event(
     // Estimate cost from token usage
     if let (Some(input), Some(output)) = (event.input_tokens, event.output_tokens) {
         if let Some(ref model_name) = event.model {
-            if let Some(pricing) = agentland_common::models::pricing::lookup_pricing(model_name)
-            {
+            if let Some(pricing) = agentland_common::models::pricing::lookup_pricing(model_name) {
                 event.cost_usd = Some(pricing.estimate_cost(input, output));
             }
         }

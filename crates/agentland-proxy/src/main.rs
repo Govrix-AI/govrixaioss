@@ -27,13 +27,14 @@ async fn main() -> anyhow::Result<()> {
     // ── Logging ───────────────────────────────────────────────────────────────
     tracing_subscriber::fmt()
         .with_env_filter(
-            EnvFilter::try_from_env("AGENTLAND_LOG_LEVEL").unwrap_or_else(|_| EnvFilter::new("info")),
+            EnvFilter::try_from_env("AGENTLAND_LOG_LEVEL")
+                .unwrap_or_else(|_| EnvFilter::new("info")),
         )
         .init();
 
     // ── Configuration ─────────────────────────────────────────────────────────
-    let config_path =
-        std::env::var("AGENTLAND_CONFIG").unwrap_or_else(|_| "config/agentland.default.toml".to_string());
+    let config_path = std::env::var("AGENTLAND_CONFIG")
+        .unwrap_or_else(|_| "config/agentland.default.toml".to_string());
     let config = Config::load_or_default(&config_path);
 
     tracing::info!(

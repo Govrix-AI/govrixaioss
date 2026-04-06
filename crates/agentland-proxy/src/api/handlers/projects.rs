@@ -273,8 +273,7 @@ pub async fn project_costs(
     let to = params.to.unwrap_or(now);
     let from = params.from.unwrap_or_else(|| to - Duration::days(30));
 
-    match agentland_store::projects::get_project_cost_summary(&state.pool, uuid, from, to).await
-    {
+    match agentland_store::projects::get_project_cost_summary(&state.pool, uuid, from, to).await {
         Ok(summary) => (StatusCode::OK, Json(json!({ "data": summary }))),
         Err(e) => {
             tracing::error!("project_costs error: {}", e);
@@ -307,9 +306,7 @@ pub async fn assign_agent_project(
         None => None,
     };
 
-    match agentland_store::projects::assign_agent_to_project(&state.pool, &id, project_uuid)
-        .await
-    {
+    match agentland_store::projects::assign_agent_to_project(&state.pool, &id, project_uuid).await {
         Ok(true) => (
             StatusCode::OK,
             Json(

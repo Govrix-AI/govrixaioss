@@ -27,7 +27,11 @@ use clap::{Parser, Subcommand};
 )]
 struct Cli {
     /// Agentland API base URL
-    #[arg(long, env = "AGENTLAND_API_URL", default_value = "http://localhost:4001")]
+    #[arg(
+        long,
+        env = "AGENTLAND_API_URL",
+        default_value = "http://localhost:4001"
+    )]
     api_url: String,
 
     /// Output format

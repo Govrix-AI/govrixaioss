@@ -3,8 +3,8 @@
 //! The agents table tracks identity, statistics, and policy assignments
 //! for every AI agent observed by the proxy.
 
-use chrono::Utc;
 use agentland_common::models::agent::Agent;
+use chrono::Utc;
 
 use crate::db::StorePool;
 

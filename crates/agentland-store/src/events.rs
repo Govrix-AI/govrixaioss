@@ -7,8 +7,8 @@
 //! building without a live DATABASE_URL. Typed compile-time queries can be
 //! enabled by running `cargo sqlx prepare` against a live database.
 
-use chrono::{DateTime, Utc};
 use agentland_common::models::event::AgentEvent;
+use chrono::{DateTime, Utc};
 use uuid::Uuid;
 
 use crate::db::StorePool;
