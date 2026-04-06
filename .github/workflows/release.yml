@@ -14,8 +14,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  PROXY_IMAGE: ghcr.io/agentland-ai/agentland
-  DASHBOARD_IMAGE: ghcr.io/agentland-ai/agentland-dashboard
+  PROXY_IMAGE: ghcr.io/govrix-ai/agentland
+  DASHBOARD_IMAGE: ghcr.io/govrix-ai/agentland-dashboard
 
 jobs:
   build-and-push:
