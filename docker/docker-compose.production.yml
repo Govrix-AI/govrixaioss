@@ -36,7 +36,7 @@ services:
 
   # ── Agentland Proxy + API ──────────────────────────────────────────────────
   proxy:
-    image: ghcr.io/govrix-ai/agentland:latest
+    image: ghcr.io/agentland-ai/agentland:latest
     container_name: agentland-proxy
     restart: unless-stopped
     depends_on:
@@ -62,7 +62,7 @@ services:
 
   # ── Dashboard (React + Vite) ──────────────────────────────────────────────────
   dashboard:
-    image: ghcr.io/govrix-ai/agentland-dashboard:latest
+    image: ghcr.io/agentland-ai/agentland-dashboard:latest
     container_name: agentland-dashboard
     restart: unless-stopped
     depends_on:
