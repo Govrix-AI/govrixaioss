@@ -13,7 +13,7 @@ const CODE_LINE = 'export OPENAI_BASE_URL=http://localhost:4000/proxy/openai/v1'
 
 const FLOW_NODES = [
     { label: "Your Agent", icon: "🤖", x: 200, y: 500 },
-    { label: "Govrix Proxy\n:4000", icon: "🛡️", x: 700, y: 500 },
+    { label: "Agentland Proxy\n:4000", icon: "🛡️", x: 700, y: 500 },
     { label: "OpenAI / Anthropic", icon: "☁️", x: 1200, y: 500 },
 ];
 

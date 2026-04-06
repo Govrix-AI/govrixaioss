@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: govrix-config
-  namespace: govrix
+  name: agentland-config
+  namespace: agentland
 data:
-  govrix.toml: |
+  agentland.toml: |
     [proxy]
     port = 4000
     bind = "0.0.0.0"
@@ -14,7 +14,7 @@ data:
     bind = "0.0.0.0"
 
     [database]
-    url = "postgresql://govrix:govrix@postgres:5432/govrix"
+    url = "postgresql://agentland:agentland@postgres:5432/agentland"
 
     [platform]
     mtls_proxy_port = 4443

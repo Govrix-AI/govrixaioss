@@ -1,4 +1,4 @@
-# Example policy configuration for Govrix PolicyEngine.
+# Example policy configuration for Agentland PolicyEngine.
 #
 # Copy this file to policies.yaml and adjust rules to match your environment.
 # Load it at startup with PolicyEngine::load_rules_from_file().

@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: govrix-ai-oss
-  namespace: govrix
+  name: agentland
+  namespace: agentland
   labels:
-    app: govrix-ai-oss
+    app: agentland
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: govrix-ai-oss
+      app: agentland
   template:
     metadata:
       labels:
-        app: govrix-ai-oss
+        app: agentland
     spec:
       containers:
-      - name: govrix-ai-oss
-        image: govrix-ai-oss:latest
+      - name: agentland
+        image: agentland:latest
         ports:
         - containerPort: 4000
           name: proxy
         - containerPort: 4001
           name: api
         env:
-        - name: GOVRIX_AI_OSS_LOG
-          value: "govrix_ai_oss_proxy=info"
+        - name: AGENTLAND_AI_OSS_LOG
+          value: "agentland_proxy=info"
         - name: RUST_LOG
-          value: "govrix_ai_oss_proxy=info"
+          value: "agentland_proxy=info"
         livenessProbe:
           httpGet:
             path: /health

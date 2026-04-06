@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Govrix AI OSS — Seed demo data
+# Agentland — Seed demo data
 # ──────────────────────────────────────────────────────────────────────────────
 # Usage: ./scripts/seed-demo-data.sh [PROXY_URL]
 #
-# Sends five synthetic OpenAI-format requests through the Govrix AI OSS proxy.
+# Sends five synthetic OpenAI-format requests through the Agentland proxy.
 # The proxy forwards them to the configured upstream (which will return a 401
 # or connection error since we use a fake API key). The proxy still captures
 # and stores the request events — so the dashboard will show real activity.
@@ -31,7 +31,7 @@ warn()    { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 error()   { echo -e "${RED}[ERROR]${NC} $*"; }
 
 echo ""
-echo "Govrix AI OSS — Seeding demo data"
+echo "Agentland — Seeding demo data"
 echo "────────────────────────────────────────────────────────────────"
 echo "Proxy:   $PROXY_URL"
 echo "API:     $API_URL"
@@ -60,8 +60,8 @@ send_openai_request() {
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
         -X POST "$OPENAI_ENDPOINT" \
         -H "Content-Type: application/json" \
-        -H "Authorization: Bearer sk-demo-fake-key-govrix-ai-oss-seed" \
-        -H "X-govrix-ai-oss-Agent-Id: $agent_id" \
+        -H "Authorization: Bearer sk-demo-fake-key-agentland-seed" \
+        -H "X-agentland-Agent-Id: $agent_id" \
         -H "Agent-Name: $agent_name" \
         --max-time 15 \
         -d "{
@@ -93,9 +93,9 @@ send_anthropic_request() {
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
         -X POST "$ANTHROPIC_ENDPOINT" \
         -H "Content-Type: application/json" \
-        -H "x-api-key: sk-ant-demo-fake-key-govrix-ai-oss-seed" \
+        -H "x-api-key: sk-ant-demo-fake-key-agentland-seed" \
         -H "anthropic-version: 2023-06-01" \
-        -H "X-govrix-ai-oss-Agent-Id: $agent_id" \
+        -H "X-agentland-Agent-Id: $agent_id" \
         -H "Agent-Name: $agent_name" \
         --max-time 15 \
         -d "{

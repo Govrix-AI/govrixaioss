@@ -51,7 +51,7 @@ export const DashboardEvents: React.FC = () => {
                     color: COLORS.PURPLE,
                 }}
             >
-                🛡️ GOVRIX AI OSS
+                🛡️ AGENTLAND AI OSS
             </div>
 
             {/* Section title */}

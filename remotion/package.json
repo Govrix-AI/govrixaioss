@@ -1,10 +1,10 @@
 {
-  "name": "govrix-launch-video",
+  "name": "agentland-launch-video",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "npx remotion studio",
-    "build": "npx remotion render GovrixLaunchVideo out/launch-video.mp4",
+    "build": "npx remotion render AgentlandLaunchVideo out/launch-video.mp4",
     "upgrade": "npx remotion upgrade"
   },
   "dependencies": {
