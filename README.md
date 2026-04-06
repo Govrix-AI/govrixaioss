@@ -15,7 +15,7 @@
 <br/>
 
 <p align="center">
-  <b>⭐️ If you find Agentland useful, <a href="https://github.com/agentland-ai/agentland">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
+  <b>⭐️ If you find Agentland useful, <a href="https://github.com/jaiswal-naman/agentland">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
 </p>
 
 <p align="center">
@@ -35,13 +35,13 @@
   <a href="https://www.rust-lang.org"><img src="https://img.shields.io/badge/Rust-1.75+-DEA584?style=flat-square&logo=rust&logoColor=white" alt="Rust" /></a>
   <a href="https://react.dev"><img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" /></a>
   <a href="https://www.timescale.com"><img src="https://img.shields.io/badge/TimescaleDB-PG16-FDB515?style=flat-square&logo=postgresql&logoColor=white" alt="TimescaleDB" /></a>
-  <a href="https://github.com/agentland-ai/agentland/actions/workflows/ci.yml"><img src="https://github.com/agentland-ai/agentland/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://ghcr.io/agentland-ai/agentland"><img src="https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" /></a>
+  <a href="https://github.com/jaiswal-naman/agentland/actions/workflows/ci.yml"><img src="https://github.com/jaiswal-naman/agentland/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://ghcr.io/jaiswal-naman/agentland"><img src="https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" /></a>
 </p>
 
 <p align="center">
   <a href="#-quick-start"><b>Getting Started</b></a> ·
-  <a href="https://github.com/agentland-ai/agentland/issues"><b>Issues</b></a> ·
+  <a href="https://github.com/jaiswal-naman/agentland/issues"><b>Issues</b></a> ·
   <a href="#-agentland-platform-enterprise"><b>Enterprise</b></a>
 </p>
 
@@ -129,10 +129,10 @@ Now every AI call is automatically **logged**, **costed**, **scanned for PII**, 
 
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/agentland-ai/agentland/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/jaiswal-naman/agentland/main/install.sh | bash
 
 # Windows (PowerShell as Admin)
-iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/jaiswal-naman/agentland/main/install.ps1 | iex
 ```
 
 ### Option B: Pre-built Docker Images (no Rust toolchain needed)
@@ -141,16 +141,16 @@ Images are published to GitHub Container Registry on every push to `main`:
 
 ```bash
 # Pull the proxy
-docker pull ghcr.io/agentland-ai/agentland:latest
+docker pull ghcr.io/jaiswal-naman/agentland:latest
 
 # Pull the dashboard
-docker pull ghcr.io/agentland-ai/agentland-dashboard:latest
+docker pull ghcr.io/jaiswal-naman/agentland-dashboard:latest
 ```
 
 Both images are multi-platform (`linux/amd64` + `linux/arm64`). Then start everything with:
 
 ```bash
-git clone https://github.com/agentland-ai/agentland.git
+git clone https://github.com/jaiswal-naman/agentland.git
 cd agentland
 docker compose -f docker/docker-compose.yml up -d
 ```
@@ -158,7 +158,7 @@ docker compose -f docker/docker-compose.yml up -d
 ### Option C: Clone & Build from Source
 
 ```bash
-git clone https://github.com/agentland-ai/agentland.git
+git clone https://github.com/jaiswal-naman/agentland.git
 cd agentland
 docker compose -f docker/docker-compose.yml up -d
 ```
@@ -515,7 +515,7 @@ rustc --version && cargo --version && node --version && pnpm --version && docker
 
 ```bash
 # 1. Clone
-git clone https://github.com/agentland-ai/agentland.git
+git clone https://github.com/jaiswal-naman/agentland.git
 cd agentland
 
 # 2. Start the database
@@ -678,7 +678,7 @@ make dev               # start everything with hot-reload
 ---
 
 <p align="center">
-  <a href="https://github.com/agentland-ai/agentland">⭐ Star on GitHub</a> · <a href="https://github.com/agentland-ai/agentland/issues">🐛 Report Bug</a> · <a href="https://github.com/agentland-ai/agentland/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
+  <a href="https://github.com/jaiswal-naman/agentland">⭐ Star on GitHub</a> · <a href="https://github.com/jaiswal-naman/agentland/issues">🐛 Report Bug</a> · <a href="https://github.com/jaiswal-naman/agentland/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
 </p>
 
 <p align="center"><sub>Agentland AI is an independent continuation of an earlier collaborative prototype.</sub></p>

@@ -31,7 +31,7 @@ Thank you for your interest in contributing. Agentland is Apache 2.0 licensed an
 ### First-time setup
 
 ```bash
-git clone https://github.com/agentland-ai/agentland.git
+git clone https://github.com/jaiswal-naman/agentland.git
 cd agentland
 ./scripts/setup.sh
 ```

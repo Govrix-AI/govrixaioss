@@ -14,8 +14,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  PROXY_IMAGE: ghcr.io/agentland-ai/agentland
-  DASHBOARD_IMAGE: ghcr.io/agentland-ai/agentland-dashboard
+  PROXY_IMAGE: ghcr.io/jaiswal-naman/agentland
+  DASHBOARD_IMAGE: ghcr.io/jaiswal-naman/agentland-dashboard
 
 jobs:
   build-and-push:
@@ -77,8 +77,8 @@ jobs:
           labels: |
             org.opencontainers.image.title=Agentland Proxy
             org.opencontainers.image.description=Transparent AI agent observability proxy
-            org.opencontainers.image.source=https://github.com/agentland-ai/agentland
-            org.opencontainers.image.url=https://github.com/agentland-ai/agentland
+            org.opencontainers.image.source=https://github.com/jaiswal-naman/agentland
+            org.opencontainers.image.url=https://github.com/jaiswal-naman/agentland
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha
@@ -95,8 +95,8 @@ jobs:
           labels: |
             org.opencontainers.image.title=Agentland Dashboard
             org.opencontainers.image.description=React dashboard for Agentland AI observability
-            org.opencontainers.image.source=https://github.com/agentland-ai/agentland
-            org.opencontainers.image.url=https://github.com/agentland-ai/agentland
+            org.opencontainers.image.source=https://github.com/jaiswal-naman/agentland
+            org.opencontainers.image.url=https://github.com/jaiswal-naman/agentland
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha

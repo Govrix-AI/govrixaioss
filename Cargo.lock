@@ -737,13 +737,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "govrix-ai-oss-cli"
+name = "agentland-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap",
  "comfy-table",
- "govrix-ai-oss-common",
+ "agentland-common",
  "reqwest",
  "serde",
  "serde_json",
@@ -755,7 +755,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "govrix-ai-oss-common"
+name = "agentland-common"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -772,15 +772,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "govrix-ai-oss-proxy"
+name = "agentland-proxy"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
  "bytes",
  "chrono",
- "govrix-ai-oss-common",
- "govrix-ai-oss-store",
+ "agentland-common",
+ "agentland-store",
  "hex",
  "http",
  "http-body-util",
@@ -803,11 +803,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "govrix-ai-oss-reports"
+name = "agentland-reports"
 version = "0.1.0"
 dependencies = [
  "chrono",
- "govrix-ai-oss-common",
+ "agentland-common",
  "minijinja",
  "serde",
  "serde_json",
@@ -817,11 +817,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "govrix-ai-oss-store"
+name = "agentland-store"
 version = "0.1.0"
 dependencies = [
  "chrono",
- "govrix-ai-oss-common",
+ "agentland-common",
  "rust_decimal",
  "serde",
  "serde_json",

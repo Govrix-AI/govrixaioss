@@ -167,7 +167,7 @@ export const TheClose: React.FC = () => {
                         fontWeight: 700,
                     }}
                 >
-                    ⭐ github.com/agentland-ai/agentlandai
+                    ⭐ github.com/jaiswal-naman/agentlandai
                 </div>
                 <div
                     style={{

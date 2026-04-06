@@ -15,13 +15,13 @@
 
 .EXAMPLE
     # End-user (Docker only):
-    iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 | iex
+    iwr -useb https://raw.githubusercontent.com/jaiswal-naman/agentland/main/install.ps1 | iex
 
     # Contributor setup:
     .\install.ps1 -Dev
 
     # Pipe with flag (save first, then run):
-    iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 -OutFile install.ps1
+    iwr -useb https://raw.githubusercontent.com/jaiswal-naman/agentland/main/install.ps1 -OutFile install.ps1
     .\install.ps1 -Dev
 
 .NOTES
@@ -39,8 +39,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 # ── Config ────────────────────────────────────────────────────────────────────
-$REPO_RAW_BASE = "https://raw.githubusercontent.com/agentland-ai/agentland/main"
-$REPO_URL      = "https://github.com/agentland-ai/agentland"
+$REPO_RAW_BASE = "https://raw.githubusercontent.com/jaiswal-naman/agentland/main"
+$REPO_URL      = "https://github.com/jaiswal-naman/agentland"
 
 # ── Colors ────────────────────────────────────────────────────────────────────
 function Write-Info    { param([string]$Msg) Write-Host "[agentland] $Msg" -ForegroundColor Cyan }

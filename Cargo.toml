@@ -13,7 +13,7 @@ version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
 authors = ["Agentland Contributors"]
-repository = "https://github.com/agentland-ai/agentland"
+repository = "https://github.com/jaiswal-naman/agentland"
 rust-version = "1.75"
 
 [workspace.dependencies]

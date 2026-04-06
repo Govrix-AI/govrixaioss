@@ -1,6 +1,6 @@
 # Agentland Dashboard
 
-A React + Vite dashboard for [Agentland](https://github.com/agentland-ai/agentland) — open-source AI agent observability.
+A React + Vite dashboard for [Agentland](https://github.com/jaiswal-naman/agentland) — open-source AI agent observability.
 
 ## Pages
 

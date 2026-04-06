@@ -18,7 +18,7 @@ set -euo pipefail
 # ── Config ────────────────────────────────────────────────────────────────────
 AGENTLAND_DIR="${AGENTLAND_DIR:-$HOME/.agentland}"
 REPO_RAW_BASE="https://agentland.in"
-REPO_URL="https://github.com/agentland-ai/agentland"
+REPO_URL="https://github.com/jaiswal-naman/agentland"
 MODE="user"
 
 # ── Colors (disabled if not a terminal) ──────────────────────────────────────
