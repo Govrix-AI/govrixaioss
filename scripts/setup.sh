@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Govrix AI OSS — First-time setup script
+# Agentland — First-time setup script
 # ──────────────────────────────────────────────────────────────────────────────
 # Usage: ./scripts/setup.sh
 #
@@ -31,7 +31,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo ""
-echo -e "${BOLD}Govrix AI OSS OSS — First-time setup${NC}"
+echo -e "${BOLD}Agentland OSS — First-time setup${NC}"
 echo "────────────────────────────────────────────────────────────────"
 info "Project root: $ROOT_DIR"
 echo ""

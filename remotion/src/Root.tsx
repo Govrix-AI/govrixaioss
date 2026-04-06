@@ -1,5 +1,5 @@
 import { Composition } from "remotion";
-import { GovrixLaunchVideo } from "./GovrixLaunchVideo";
+import { AgentlandLaunchVideo } from "./AgentlandLaunchVideo";
 
 // Total duration calculation:
 // 11 scenes with 10 fade transitions × 15 frames each
@@ -11,8 +11,8 @@ import { GovrixLaunchVideo } from "./GovrixLaunchVideo";
 export const RemotionRoot: React.FC = () => {
     return (
         <Composition
-            id="GovrixLaunchVideo"
-            component={GovrixLaunchVideo}
+            id="AgentlandLaunchVideo"
+            component={AgentlandLaunchVideo}
             durationInFrames={3615}
             fps={30}
             width={1920}

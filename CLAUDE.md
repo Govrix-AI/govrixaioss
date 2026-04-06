@@ -1,4 +1,4 @@
-# Govrix AI OSS — OSS AI Agent Observability Proxy
+# Agentland — OSS AI Agent Observability Proxy
 
 ## FIRST: Read Shared Context
 
@@ -12,9 +12,9 @@
 
 ## What This Is
 
-Govrix AI OSS is the **open-source core** of Govrix: a transparent HTTP proxy that sits between AI agents and their APIs (OpenAI, Anthropic, MCP). It captures every request/response for audit, compliance, and cost tracking — with zero agent code changes.
+Agentland is the **open-source core** of Agentland: a transparent HTTP proxy that sits between AI agents and their APIs (OpenAI, Anthropic, MCP). It captures every request/response for audit, compliance, and cost tracking — with zero agent code changes.
 
-The enterprise features (policy enforcement, mTLS, session recorder, SSO) live in the separate `govrix` repo.
+The enterprise features (policy enforcement, mTLS, session recorder, SSO) live in the separate `agentland` repo.
 
 ---
 
@@ -46,15 +46,15 @@ curl http://localhost:4001/health   # {"status":"ok","version":"0.1.0"}
 make setup           # First-time: Rust toolchain + pnpm + deps
 make docker-up       # Start TimescaleDB + proxy + dashboard
 make docker-down     # Stop containers
-make dev-proxy       # Proxy in watch mode — ports 4000/4001 (binary: govrix-ai-oss)
+make dev-proxy       # Proxy in watch mode — ports 4000/4001 (binary: agentland)
 make dev-dashboard   # React dev server with HMR — port 3000
 make test            # All Rust tests
-make test-proxy      # Proxy crate only (-p govrix-ai-oss-proxy)
+make test-proxy      # Proxy crate only (-p agentland-proxy)
 make lint            # cargo clippy --workspace -- -D warnings
 make fmt             # cargo fmt --all
 make check           # Fast cargo check
 make build           # Release build — all crates
-make build-proxy     # Release build — govrix-ai-oss-proxy crate only
+make build-proxy     # Release build — agentland-proxy crate only
 make migrate         # Apply SQL migrations (needs DATABASE_URL)
 make db-reset        # Drop + recreate DB then migrate
 make docker-logs     # Tail container logs
@@ -66,17 +66,17 @@ make ci              # Full CI: fmt-check + lint + test + build
 ## Workspace Structure (5 Rust Crates)
 
 ```
-govrix-ai-oss/
+agentland/
 ├── crates/
-│   ├── govrix-ai-oss-common/   # Shared types, config, models, protocol parsers
-│   ├── govrix-ai-oss-proxy/    # Hot-path proxy + REST API — binary: govrix-ai-oss
-│   ├── govrix-ai-oss-store/    # PostgreSQL + TimescaleDB layer (sqlx)
-│   ├── govrix-ai-oss-cli/      # CLI — binary: govrix-ai-oss-cli
-│   └── govrix-ai-oss-reports/  # PDF + JSON report generation
+│   ├── agentland-common/   # Shared types, config, models, protocol parsers
+│   ├── agentland-proxy/    # Hot-path proxy + REST API — binary: agentland
+│   ├── agentland-store/    # PostgreSQL + TimescaleDB layer (sqlx)
+│   ├── agentland-cli/      # CLI — binary: agentland-cli
+│   └── agentland-reports/  # PDF + JSON report generation
 ├── dashboard/                 # React 18 + TypeScript + Vite + Tailwind CSS
 ├── docker/                    # docker-compose.yml, Dockerfile, nginx.conf
 ├── init/                # 5 SQL files (idempotent)
-├── config/                    # govrix.default.toml, policies.example.yaml
+├── config/                    # agentland.default.toml, policies.example.yaml
 └── scripts/                   # setup.sh, verify.sh
 ```
 
@@ -96,7 +96,7 @@ govrix-ai-oss/
 
 ## Architecture: Key Invariants
 
-**Hot path** (`govrix-ai-oss-proxy`):
+**Hot path** (`agentland-proxy`):
 - Uses `hyper` directly — NOT axum — for <1ms p50, <5ms p99 latency
 - Management API uses `axum` on port 4001 (separate from hot path)
 - Fire-and-forget: events go to a bounded `mpsc` channel (10K) and are never awaited
@@ -128,21 +128,21 @@ Bearer token auth on `/api/v1/*`. Response format: `{"data": [...], "total": N}`
 ## Configuration
 
 ```bash
-GOVRIX_STORE__DATABASE_URL=postgresql://govrix:govrix@localhost:5432/govrix
-GOVRIX_PROXY__LISTEN_PORT=4000
-GOVRIX_API_KEY=your_secret_key_here
-RUST_LOG=govrix_ai_oss_proxy=info
+AGENTLAND_STORE__DATABASE_URL=postgresql://agentland:agentland@localhost:5432/agentland
+AGENTLAND_PROXY__LISTEN_PORT=4000
+AGENTLAND_API_KEY=your_secret_key_here
+RUST_LOG=agentland_proxy=info
 ```
 
 ---
 
 ## NEVER Commit to OSS Repo
 
-- **NO docs, context files, session logs, or strategy docs** in govrix-ai-oss ever
-- All product docs, roadmaps, session logs, and analysis live in the **enterprise `govrix` repo** only:
-  - `govrix/.context/SCOUT_MEMORY.md`
-  - `govrix/.context/SCOUT_SESSION_LOG.md`
-  - `govrix/Docs/govrix-ai-oss/`
+- **NO docs, context files, session logs, or strategy docs** in agentland ever
+- All product docs, roadmaps, session logs, and analysis live in the **enterprise `agentland` repo** only:
+  - `agentland/.context/SCOUT_MEMORY.md`
+  - `agentland/.context/SCOUT_SESSION_LOG.md`
+  - `agentland/Docs/agentland/`
 - This repo is public — anything committed here is visible to everyone
 
 ---

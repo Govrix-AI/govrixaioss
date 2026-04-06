@@ -107,7 +107,7 @@ export default function CostsPage() {
           />
         </div>
 
-        {/* Cost Bar Chart by selected group (no timeseries API in Govrix AI OSS) */}
+        {/* Cost Bar Chart by selected group (no timeseries API in Agentland) */}
         <div className="bg-white border border-slate-200 rounded-xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-bold text-slate-700">

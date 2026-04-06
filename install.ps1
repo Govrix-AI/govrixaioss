@@ -1,10 +1,10 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Govrix AI OSS — Windows PowerShell Installer
+    Agentland — Windows PowerShell Installer
 
 .DESCRIPTION
-    Installs Govrix AI OSS on Windows using Docker.
+    Installs Agentland on Windows using Docker.
 
     Two modes:
       Default (-Dev not set)  — Docker-only, no Rust or Node.js needed.
@@ -15,13 +15,13 @@
 
 .EXAMPLE
     # End-user (Docker only):
-    iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.ps1 | iex
+    iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 | iex
 
     # Contributor setup:
     .\install.ps1 -Dev
 
     # Pipe with flag (save first, then run):
-    iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.ps1 -OutFile install.ps1
+    iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 -OutFile install.ps1
     .\install.ps1 -Dev
 
 .NOTES
@@ -32,23 +32,23 @@
 [CmdletBinding()]
 param(
     [switch]$Dev,
-    [string]$GovrixDir = "$env:USERPROFILE\.govrix"
+    [string]$AgentlandDir = "$env:USERPROFILE\.agentland"
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 # ── Config ────────────────────────────────────────────────────────────────────
-$REPO_RAW_BASE = "https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main"
-$REPO_URL      = "https://github.com/Govrix-AI/govrixaioss"
+$REPO_RAW_BASE = "https://raw.githubusercontent.com/agentland-ai/agentland/main"
+$REPO_URL      = "https://github.com/agentland-ai/agentland"
 
 # ── Colors ────────────────────────────────────────────────────────────────────
-function Write-Info    { param([string]$Msg) Write-Host "[govrix] $Msg" -ForegroundColor Cyan }
-function Write-Success { param([string]$Msg) Write-Host "[govrix] $Msg" -ForegroundColor Green }
-function Write-Warn    { param([string]$Msg) Write-Host "[govrix] WARN: $Msg" -ForegroundColor Yellow }
+function Write-Info    { param([string]$Msg) Write-Host "[agentland] $Msg" -ForegroundColor Cyan }
+function Write-Success { param([string]$Msg) Write-Host "[agentland] $Msg" -ForegroundColor Green }
+function Write-Warn    { param([string]$Msg) Write-Host "[agentland] WARN: $Msg" -ForegroundColor Yellow }
 function Write-Fail    {
     param([string]$Msg)
-    Write-Host "[govrix] ERROR: $Msg" -ForegroundColor Red
+    Write-Host "[agentland] ERROR: $Msg" -ForegroundColor Red
     throw "Installation failed: $Msg"
 }
 
@@ -168,7 +168,7 @@ function Wait-Healthy {
         [int]   $IntervalSec = 3
     )
 
-    Write-Host "[govrix] Waiting for $Label" -ForegroundColor Cyan -NoNewline
+    Write-Host "[agentland] Waiting for $Label" -ForegroundColor Cyan -NoNewline
     $elapsed = 0
 
     while ($elapsed -lt $TimeoutSec) {
@@ -188,7 +188,7 @@ function Wait-Healthy {
     }
 
     Write-Host ""
-    Write-Warn "$Label did not become ready in ${TimeoutSec}s — check logs:`n  docker compose --project-directory `"$GovrixDir`" logs"
+    Write-Warn "$Label did not become ready in ${TimeoutSec}s — check logs:`n  docker compose --project-directory `"$AgentlandDir`" logs"
     return $false
 }
 
@@ -197,20 +197,20 @@ function Wait-Healthy {
 # =============================================================================
 function Install-User {
     Write-Host ""
-    Write-Host "Govrix — Quick Install (Docker)" -ForegroundColor White -BackgroundColor DarkBlue
+    Write-Host "Agentland — Quick Install (Docker)" -ForegroundColor White -BackgroundColor DarkBlue
     Write-Separator
     Write-Host ""
 
     Test-Docker
 
     # Create install directory
-    if (-not (Test-Path $GovrixDir)) {
-        New-Item -ItemType Directory -Path $GovrixDir -Force | Out-Null
+    if (-not (Test-Path $AgentlandDir)) {
+        New-Item -ItemType Directory -Path $AgentlandDir -Force | Out-Null
     }
-    Write-Info "Install directory: $GovrixDir"
+    Write-Info "Install directory: $AgentlandDir"
 
     # Download docker-compose.yml (always re-download to get latest from repo)
-    $composeDest = Join-Path $GovrixDir "docker-compose.yml"
+    $composeDest = Join-Path $AgentlandDir "docker-compose.yml"
     Write-Info "Downloading docker-compose.yml..."
     try {
         Invoke-WebRequest -Uri "$REPO_RAW_BASE/docker/docker-compose.production.yml" `
@@ -222,7 +222,7 @@ function Install-User {
     }
 
     # Download database initialization script (always re-download for schema updates)
-    $initDest = Join-Path $GovrixDir "init-combined.sql"
+    $initDest = Join-Path $AgentlandDir "init-combined.sql"
     Write-Info "Downloading database initialization script..."
     try {
         Invoke-WebRequest -Uri "$REPO_RAW_BASE/docker/init-combined.sql" `
@@ -234,7 +234,7 @@ function Install-User {
     }
 
     # Generate .env with secure random credentials
-    $envFile = Join-Path $GovrixDir ".env"
+    $envFile = Join-Path $AgentlandDir ".env"
     if (-not (Test-Path $envFile)) {
         Write-Info "Generating .env with secure credentials..."
         $dbPass    = New-SecureHex -ByteCount 24
@@ -242,20 +242,20 @@ function Install-User {
         $timestamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
         $envContent = @"
-# Govrix configuration — generated by install.ps1 $timestamp
+# Agentland configuration — generated by install.ps1 $timestamp
 # Edit this file to change ports, credentials, or retention settings.
 
-POSTGRES_USER=govrix
-POSTGRES_DB=govrix
+POSTGRES_USER=agentland
+POSTGRES_DB=agentland
 POSTGRES_PASSWORD=$dbPass
 
-GOVRIX_API_KEY=$apiKey
-GOVRIX_DATABASE_URL=postgresql://govrix:${dbPass}@postgres:5432/govrix
+AGENTLAND_API_KEY=$apiKey
+AGENTLAND_DATABASE_URL=postgresql://agentland:${dbPass}@postgres:5432/agentland
 
-GOVRIX_PROXY_PORT=4000
-GOVRIX_API_PORT=4001
+AGENTLAND_PROXY_PORT=4000
+AGENTLAND_API_PORT=4001
 
-RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
+RUST_LOG=agentland_proxy=info,tower_http=warn
 "@
         Set-Content -Path $envFile -Value $envContent -Encoding UTF8
         Write-Success ".env created"
@@ -265,24 +265,24 @@ RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
 
     # Pull and start
     Write-Info "Pulling Docker images (first run takes 2-5 minutes)..."
-    docker compose --project-directory $GovrixDir pull --quiet
+    docker compose --project-directory $AgentlandDir pull --quiet
     if ($LASTEXITCODE -ne 0) { Write-Fail "docker compose pull failed." }
     Write-Success "Images ready"
 
-    Write-Info "Starting Govrix services..."
-    docker compose --project-directory $GovrixDir up -d
+    Write-Info "Starting Agentland services..."
+    docker compose --project-directory $AgentlandDir up -d
     if ($LASTEXITCODE -ne 0) { Write-Fail "docker compose up failed." }
     Write-Success "Services started"
 
     # Health checks
     Write-Host ""
-    Wait-Healthy -Url "http://localhost:4001/health" -Label "Govrix API"       -TimeoutSec 90 | Out-Null
-    Wait-Healthy -Url "http://localhost:3000"         -Label "Govrix Dashboard" -TimeoutSec 30 | Out-Null
+    Wait-Healthy -Url "http://localhost:4001/health" -Label "Agentland API"       -TimeoutSec 90 | Out-Null
+    Wait-Healthy -Url "http://localhost:3000"         -Label "Agentland Dashboard" -TimeoutSec 30 | Out-Null
 
     # Read API key from .env (if present) for display
     $apiKey = ""
     if (Test-Path $envFile) {
-        $apiKeyLine = Select-String -Path $envFile -Pattern '^GOVRIX_API_KEY=' | Select-Object -First 1
+        $apiKeyLine = Select-String -Path $envFile -Pattern '^AGENTLAND_API_KEY=' | Select-Object -First 1
         if ($apiKeyLine) {
             $apiKey = ($apiKeyLine.Line -split '=', 2)[1]
         }
@@ -291,7 +291,7 @@ RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
     # Done — success summary
     Write-Host ""
     Write-Separator
-    Write-Host "Govrix is running!" -ForegroundColor Green
+    Write-Host "Agentland is running!" -ForegroundColor Green
     Write-Host ""
     Write-Host "  Dashboard:   " -NoNewline; Write-Host "http://localhost:3000"        -ForegroundColor Cyan
     Write-Host "  API:         " -NoNewline; Write-Host "http://localhost:4001/health" -ForegroundColor Cyan
@@ -301,15 +301,15 @@ RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
         Write-Host "  API Key:     " -NoNewline; Write-Host $apiKey -ForegroundColor Yellow
     }
     Write-Host ""
-    Write-Host "  Point your agents at Govrix (one env var, no code changes):" -ForegroundColor White
+    Write-Host "  Point your agents at Agentland (one env var, no code changes):" -ForegroundColor White
     Write-Host ""
     Write-Host '    $env:OPENAI_BASE_URL    = "http://localhost:4000/proxy/openai/v1"'
     Write-Host '    $env:ANTHROPIC_BASE_URL = "http://localhost:4000/proxy/anthropic/v1"'
     Write-Host ""
     Write-Host "  Manage:" -ForegroundColor White
-    Write-Host "    docker compose --project-directory `"$GovrixDir`" logs -f"
-    Write-Host "    docker compose --project-directory `"$GovrixDir`" down"
-    Write-Host "    docker compose --project-directory `"$GovrixDir`" up -d"
+    Write-Host "    docker compose --project-directory `"$AgentlandDir`" logs -f"
+    Write-Host "    docker compose --project-directory `"$AgentlandDir`" down"
+    Write-Host "    docker compose --project-directory `"$AgentlandDir`" up -d"
     Write-Host ""
     Write-Host "  Docs:  $REPO_URL" -ForegroundColor White
     Write-Separator
@@ -321,7 +321,7 @@ RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
 # =============================================================================
 function Install-Dev {
     Write-Host ""
-    Write-Host "Govrix — Developer Setup" -ForegroundColor White -BackgroundColor DarkBlue
+    Write-Host "Agentland — Developer Setup" -ForegroundColor White -BackgroundColor DarkBlue
     Write-Separator
     Write-Host ""
 
@@ -329,13 +329,13 @@ function Install-Dev {
     $repoDir = $null
     if (Test-Path (Join-Path (Get-Location) "Cargo.toml")) {
         $cargoContent = Get-Content (Join-Path (Get-Location) "Cargo.toml") -Raw
-        if ($cargoContent -match 'govrix-ai-oss') {
+        if ($cargoContent -match 'agentland') {
             $repoDir = (Get-Location).Path
         }
     }
     if (-not $repoDir -and (Test-Path (Join-Path (Split-Path (Get-Location) -Parent) "Cargo.toml"))) {
         $parentCargo = Get-Content (Join-Path (Split-Path (Get-Location) -Parent) "Cargo.toml") -Raw
-        if ($parentCargo -match 'govrix-ai-oss') {
+        if ($parentCargo -match 'agentland') {
             $repoDir = Split-Path (Get-Location) -Parent
         }
     }
@@ -343,11 +343,11 @@ function Install-Dev {
     if (-not $repoDir) {
         Write-Host ""
         Write-Fail @"
--Dev mode must be run from the cloned govrix-ai-oss repo.
+-Dev mode must be run from the cloned agentland repo.
 
   Clone it first:
     git clone $REPO_URL
-    cd govrix-ai-oss
+    cd agentland
     .\install.ps1 -Dev
 "@
     }
@@ -415,7 +415,7 @@ try {
     }
 } catch {
     Write-Host ""
-    Write-Host "[govrix] Installation aborted: $($_.Exception.Message)" -ForegroundColor Red
-    Write-Host "[govrix] If the error persists, please open an issue: $REPO_URL/issues" -ForegroundColor Yellow
+    Write-Host "[agentland] Installation aborted: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "[agentland] If the error persists, please open an issue: $REPO_URL/issues" -ForegroundColor Yellow
     Write-Host ""
 }

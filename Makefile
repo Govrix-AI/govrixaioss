@@ -1,4 +1,4 @@
-# Govrix AI OSS — Build Orchestration
+# Agentland — Build Orchestration
 # Usage: make <target>
 
 .PHONY: help setup dev test lint build clean fmt check docker-up docker-down
@@ -24,11 +24,11 @@ setup: ## First-time project setup
 # ── Development ───────────────────────────────────────────────────────────────
 dev: ## Start proxy + dashboard in watch mode
 	@echo "==> Starting development servers..."
-	$(CARGO) watch -x "run --bin govrix-ai-oss" &
+	$(CARGO) watch -x "run --bin agentland" &
 	cd dashboard && $(PNPM) dev
 
 dev-proxy: ## Start only the proxy in watch mode
-	RUST_LOG=$(RUST_LOG) $(CARGO) watch -x "run --bin govrix-ai-oss"
+	RUST_LOG=$(RUST_LOG) $(CARGO) watch -x "run --bin agentland"
 
 dev-dashboard: ## Start only the dashboard
 	cd dashboard && $(PNPM) dev
@@ -38,7 +38,7 @@ build: ## Build all crates in release mode
 	$(CARGO) build --release --workspace
 
 build-proxy: ## Build only the proxy binary
-	$(CARGO) build --release -p govrix-ai-oss-proxy
+	$(CARGO) build --release -p agentland-proxy
 
 build-dashboard: ## Build dashboard for production
 	cd dashboard && $(PNPM) build
@@ -48,7 +48,7 @@ test: ## Run all Rust tests
 	$(CARGO) test --workspace
 
 test-proxy: ## Run proxy tests only
-	$(CARGO) test -p govrix-ai-oss-proxy
+	$(CARGO) test -p agentland-proxy
 
 test-integration: ## Run integration tests (requires running postgres)
 	$(CARGO) test --test '*' -- --test-threads=1

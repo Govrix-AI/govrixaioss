@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Govrix AI OSS — Reset database (drop + recreate + re-migrate)
+# Agentland — Reset database (drop + recreate + re-migrate)
 # ──────────────────────────────────────────────────────────────────────────────
 # Usage: ./scripts/reset-db.sh [--yes]
 #
-# Drops the 'Govrix AI OSS' database inside the running postgres container,
+# Drops the 'Agentland' database inside the running postgres container,
 # recreates it, and re-runs all migration files in order.
 # Useful for starting completely fresh during development.
 #
@@ -29,13 +29,13 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 COMPOSE_FILE="$ROOT_DIR/docker/docker-compose.yml"
 MIGRATIONS_DIR="$ROOT_DIR/init"
 
-CONTAINER="govrix-ai-oss-postgres"
-PG_USER="Govrix AI OSS"
-PG_DB="Govrix AI OSS"
-PG_PASS="govrix_ai_oss_dev"
+CONTAINER="agentland-postgres"
+PG_USER="Agentland"
+PG_DB="Agentland"
+PG_PASS="agentland_dev"
 
 echo ""
-echo -e "${BOLD}${RED}Govrix AI OSS — Database Reset${NC}"
+echo -e "${BOLD}${RED}Agentland — Database Reset${NC}"
 echo "────────────────────────────────────────────────────────────────"
 warn "This will DROP and RECREATE the '$PG_DB' database."
 warn "ALL data will be permanently deleted."

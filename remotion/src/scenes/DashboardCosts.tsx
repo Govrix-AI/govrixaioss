@@ -45,7 +45,7 @@ export const DashboardCosts: React.FC = () => {
         >
             {/* Badge */}
             <div style={{ position: "absolute", top: 40, left: 40, opacity: 0.6, fontFamily: FONTS.INTER, fontSize: 16, fontWeight: 700, color: COLORS.PURPLE }}>
-                🛡️ GOVRIX AI OSS
+                🛡️ AGENTLAND AI OSS
             </div>
 
             {/* Title */}

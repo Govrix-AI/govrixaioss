@@ -44,7 +44,7 @@ export const DashboardAgents: React.FC = () => {
                 }}
             >
                 <span style={{ fontFamily: FONTS.INTER, fontSize: 16, fontWeight: 700, color: COLORS.PURPLE }}>
-                    🛡️ GOVRIX AI OSS
+                    🛡️ AGENTLAND AI OSS
                 </span>
             </div>
 

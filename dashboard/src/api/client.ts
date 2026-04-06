@@ -14,7 +14,7 @@ export class ApiError extends Error {
   }
 }
 
-const API_KEY = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_KEY ?? 'govrix-local-dev'
+const API_KEY = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_KEY ?? 'agentland-local-dev'
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(path, {

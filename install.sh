@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Govrix — Installer
+# Agentland — Installer
 #
 # Usage:
 #   # End-user (Docker only, no Rust/Node needed):
-#   curl -sSfL https://govrix.dev/install.sh | sh
+#   curl -sSfL https://agentland.in/install.sh | sh
 #
 #   # Contributor (full dev setup):
-#   curl -sSfL https://govrix.dev/install.sh | sh -s -- --dev
+#   curl -sSfL https://agentland.in/install.sh | sh -s -- --dev
 #
 #   # Or, after cloning:
 #   ./install.sh          # Docker-only
@@ -16,9 +16,9 @@
 set -euo pipefail
 
 # ── Config ────────────────────────────────────────────────────────────────────
-GOVRIX_DIR="${GOVRIX_DIR:-$HOME/.govrix}"
-REPO_RAW_BASE="https://govrix.dev"
-REPO_URL="https://github.com/Govrix-AI/govrixaioss"
+AGENTLAND_DIR="${AGENTLAND_DIR:-$HOME/.agentland}"
+REPO_RAW_BASE="https://agentland.in"
+REPO_URL="https://github.com/agentland-ai/agentland"
 MODE="user"
 
 # ── Colors (disabled if not a terminal) ──────────────────────────────────────
@@ -29,10 +29,10 @@ else
     RED=''; GREEN=''; YELLOW=''; BLUE=''; BOLD=''; NC=''
 fi
 
-info()    { printf "${BLUE}[govrix]${NC} %s\n" "$*"; }
-success() { printf "${GREEN}[govrix]${NC} %s\n" "$*"; }
-warn()    { printf "${YELLOW}[govrix]${NC} WARN: %s\n" "$*"; }
-error()   { printf "${RED}[govrix]${NC} ERROR: %s\n" "$*" >&2; exit 1; }
+info()    { printf "${BLUE}[agentland]${NC} %s\n" "$*"; }
+success() { printf "${GREEN}[agentland]${NC} %s\n" "$*"; }
+warn()    { printf "${YELLOW}[agentland]${NC} WARN: %s\n" "$*"; }
+error()   { printf "${RED}[agentland]${NC} ERROR: %s\n" "$*" >&2; exit 1; }
 
 # ── Argument parsing ──────────────────────────────────────────────────────────
 for arg in "$@"; do
@@ -40,13 +40,13 @@ for arg in "$@"; do
         --dev)   MODE="dev"  ;;
         --user)  MODE="user" ;;
         --help|-h)
-            printf "Govrix Installer\n\n"
+            printf "Agentland Installer\n\n"
             printf "Usage: install.sh [--user|--dev]\n\n"
             printf "  (no flag)   Docker-only install. No Rust or Node.js needed.\n"
             printf "  --user      Same as above (explicit).\n"
             printf "  --dev       Full contributor setup. Requires Rust + Node.js 20+.\n\n"
             printf "Environment variables:\n"
-            printf "  GOVRIX_DIR  Install directory (default: ~/.govrix)\n\n"
+            printf "  AGENTLAND_DIR  Install directory (default: ~/.agentland)\n\n"
             exit 0
             ;;
         *) warn "Unknown argument: $arg (ignored)" ;;
@@ -63,7 +63,7 @@ detect_os() {
             error "Windows native shell is not supported.\nPlease use WSL2: https://docs.microsoft.com/windows/wsl/install\nThen re-run this installer inside WSL2."
             ;;
         *)
-            error "Unsupported OS: $(uname -s). Govrix supports Linux and macOS."
+            error "Unsupported OS: $(uname -s). Agentland supports Linux and macOS."
             ;;
     esac
 }
@@ -159,7 +159,7 @@ check_or_install_pnpm() {
 # ── Wait for service health ───────────────────────────────────────────────────
 wait_healthy() {
     local url="$1" label="$2" timeout="${3:-90}" interval=3 elapsed=0
-    printf "${BLUE}[govrix]${NC} Waiting for %s" "$label"
+    printf "${BLUE}[agentland]${NC} Waiting for %s" "$label"
     while [ "$elapsed" -lt "$timeout" ]; do
         if curl -sSf "$url" &>/dev/null; then
             printf " done\n"
@@ -171,7 +171,7 @@ wait_healthy() {
         elapsed=$((elapsed + interval))
     done
     printf "\n"
-    warn "$label did not become ready in ${timeout}s — check logs: docker compose -C $GOVRIX_DIR logs"
+    warn "$label did not become ready in ${timeout}s — check logs: docker compose -C $AGENTLAND_DIR logs"
     return 1
 }
 
@@ -179,18 +179,18 @@ wait_healthy() {
 # USER MODE — Docker-only, no Rust/Node needed
 # ═════════════════════════════════════════════════════════════════════════════
 install_user() {
-    printf "\n${BOLD}Govrix — Quick Install (Docker)${NC}\n"
+    printf "\n${BOLD}Agentland — Quick Install (Docker)${NC}\n"
     printf "═══════════════════════════════════════════════════════════════\n\n"
 
     detect_os >/dev/null
     check_docker
 
     # Create install directory
-    mkdir -p "$GOVRIX_DIR"
-    info "Install directory: $GOVRIX_DIR"
+    mkdir -p "$AGENTLAND_DIR"
+    info "Install directory: $AGENTLAND_DIR"
 
     # Download docker-compose.yml
-    local compose_dest="$GOVRIX_DIR/docker-compose.yml"
+    local compose_dest="$AGENTLAND_DIR/docker-compose.yml"
     if [ -f "$compose_dest" ]; then
         info "docker-compose.yml already exists — keeping"
     else
@@ -200,7 +200,7 @@ install_user() {
     fi
 
     # Download database init SQL files
-    local init_dir="$GOVRIX_DIR/init"
+    local init_dir="$AGENTLAND_DIR/init"
     mkdir -p "$init_dir"
     local sql_files="001_create_events.sql 002_create_agents.sql 003_create_costs.sql 004_create_hypertables.sql 005_create_indexes.sql 006_budget_daily.sql 007_budget_config.sql 008_create_projects.sql"
     local needs_sql=0
@@ -218,28 +218,28 @@ install_user() {
     fi
 
     # Generate .env with secure random credentials
-    local env_file="$GOVRIX_DIR/.env"
+    local env_file="$AGENTLAND_DIR/.env"
     if [ ! -f "$env_file" ]; then
         info "Generating .env with secure credentials..."
         local db_pass
         db_pass=$(random_hex 24)
 
         cat > "$env_file" <<EOF
-# Govrix configuration — generated by install.sh $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+# Agentland configuration — generated by install.sh $(date -u +"%Y-%m-%dT%H:%M:%SZ")
 # Edit this file to change ports, credentials, or retention settings.
 
-POSTGRES_USER=govrix
-POSTGRES_DB=govrix
+POSTGRES_USER=agentland
+POSTGRES_DB=agentland
 POSTGRES_PASSWORD=${db_pass}
 
-GOVRIX_DATABASE_URL=postgres://govrix:${db_pass}@postgres:5432/govrix
-GOVRIX_DATABASE__MAX_CONNECTIONS=20
-GOVRIX_DATABASE__MIN_CONNECTIONS=2
+AGENTLAND_DATABASE_URL=postgres://agentland:${db_pass}@postgres:5432/agentland
+AGENTLAND_DATABASE__MAX_CONNECTIONS=20
+AGENTLAND_DATABASE__MIN_CONNECTIONS=2
 
-GOVRIX_PROXY_PORT=4000
-GOVRIX_API_PORT=4001
+AGENTLAND_PROXY_PORT=4000
+AGENTLAND_API_PORT=4001
 
-RUST_LOG=govrix_ai_oss_proxy=info,tower_http=warn
+RUST_LOG=agentland_proxy=info,tower_http=warn
 EOF
         success ".env created"
     else
@@ -248,34 +248,34 @@ EOF
 
     # Start services
     info "Pulling Docker images (first run takes 2-5 minutes)..."
-    docker compose --project-directory "$GOVRIX_DIR" pull --quiet
+    docker compose --project-directory "$AGENTLAND_DIR" pull --quiet
     success "Images ready"
 
-    info "Starting Govrix services..."
-    docker compose --project-directory "$GOVRIX_DIR" up -d
+    info "Starting Agentland services..."
+    docker compose --project-directory "$AGENTLAND_DIR" up -d
     success "Services started"
 
     # Health checks
     printf "\n"
-    wait_healthy "http://localhost:4001/health" "Govrix API"    90 || true
-    wait_healthy "http://localhost:3000"         "Govrix Dashboard" 30 || true
+    wait_healthy "http://localhost:4001/health" "Agentland API"    90 || true
+    wait_healthy "http://localhost:3000"         "Agentland Dashboard" 30 || true
 
     # Done
     printf "\n"
     printf "═══════════════════════════════════════════════════════════════\n"
-    printf "${GREEN}${BOLD}Govrix is running!${NC}\n\n"
+    printf "${GREEN}${BOLD}Agentland is running!${NC}\n\n"
     printf "  ${BOLD}Dashboard:${NC}   http://localhost:3000\n"
     printf "  ${BOLD}API:${NC}         http://localhost:4001/health\n"
     printf "  ${BOLD}Metrics:${NC}     http://localhost:9090/metrics\n"
     printf "\n"
-    printf "  ${BOLD}Point your agents at Govrix (one env var, no code changes):${NC}\n\n"
+    printf "  ${BOLD}Point your agents at Agentland (one env var, no code changes):${NC}\n\n"
     printf "    export OPENAI_BASE_URL=http://localhost:4000/proxy/openai/v1\n"
     printf "    export ANTHROPIC_BASE_URL=http://localhost:4000/proxy/anthropic/v1\n"
     printf "\n"
     printf "  ${BOLD}Manage:${NC}\n"
-    printf "    docker compose --project-directory %s logs -f\n" "$GOVRIX_DIR"
-    printf "    docker compose --project-directory %s down\n" "$GOVRIX_DIR"
-    printf "    docker compose --project-directory %s up -d\n" "$GOVRIX_DIR"
+    printf "    docker compose --project-directory %s logs -f\n" "$AGENTLAND_DIR"
+    printf "    docker compose --project-directory %s down\n" "$AGENTLAND_DIR"
+    printf "    docker compose --project-directory %s up -d\n" "$AGENTLAND_DIR"
     printf "\n"
     printf "  ${BOLD}Docs:${NC}  %s\n" "$REPO_URL"
     printf "═══════════════════════════════════════════════════════════════\n\n"
@@ -285,20 +285,20 @@ EOF
 # DEV MODE — Full contributor setup
 # ═════════════════════════════════════════════════════════════════════════════
 install_dev() {
-    printf "\n${BOLD}Govrix — Developer Setup${NC}\n"
+    printf "\n${BOLD}Agentland — Developer Setup${NC}\n"
     printf "═══════════════════════════════════════════════════════════════\n\n"
 
     detect_os >/dev/null
 
     # Find repo root — must be run from the cloned repo
     local repo_dir
-    if [ -f "Cargo.toml" ] && grep -q "govrix-ai-oss" Cargo.toml 2>/dev/null; then
+    if [ -f "Cargo.toml" ] && grep -q "agentland" Cargo.toml 2>/dev/null; then
         repo_dir="$(pwd)"
-    elif [ -f "../Cargo.toml" ] && grep -q "govrix-ai-oss" ../Cargo.toml 2>/dev/null; then
+    elif [ -f "../Cargo.toml" ] && grep -q "agentland" ../Cargo.toml 2>/dev/null; then
         repo_dir="$(cd .. && pwd)"
     else
         printf "\n"
-        error "--dev mode must be run from the cloned govrix-ai-oss repo.\n\n  Clone it first:\n    git clone $REPO_URL\n    cd govrix-ai-oss\n    ./install.sh --dev\n"
+        error "--dev mode must be run from the cloned agentland repo.\n\n  Clone it first:\n    git clone $REPO_URL\n    cd agentland\n    ./install.sh --dev\n"
     fi
     info "Repo root: $repo_dir"
     cd "$repo_dir"

@@ -212,10 +212,10 @@ export default function ReportsPage() {
              (data as Record<string, unknown[]>).agents ??
              (data as Record<string, unknown[]>).by_model ??
              [data as Record<string, unknown>])
-        fileName = `govrix-${template.id}-${dateStr}.csv`
+        fileName = `agentland-${template.id}-${dateStr}.csv`
         downloadFile(toCSV(rows as Record<string, unknown>[]), fileName, 'text/csv')
       } else {
-        fileName = `govrix-${template.id}-${dateStr}.json`
+        fileName = `agentland-${template.id}-${dateStr}.json`
         downloadFile(JSON.stringify(data, null, 2), fileName, 'application/json')
       }
 
@@ -246,7 +246,7 @@ export default function ReportsPage() {
     try {
       const data = await template.fetch()
       const timestamp = new Date().toLocaleString()
-      const logoUrl = window.location.origin + '/govrix-logo.jpeg'
+      const logoUrl = window.location.origin + '/agentland-logo.jpeg'
 
       // Resolve rows (same logic as CSV branch)
       const anyData = data as Record<string, unknown>
@@ -284,7 +284,7 @@ export default function ReportsPage() {
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Govrix AI OSS \u2014 ${esc(template.label)} \u2014 ${fmtDate()}</title>
+  <title>Agentland \u2014 ${esc(template.label)} \u2014 ${fmtDate()}</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;font-size:11px;color:#1e293b;background:#fff}
@@ -340,16 +340,16 @@ export default function ReportsPage() {
 
   <div class="hdr">
     <div class="hdr-left">
-      <img class="logo" src="${logoUrl}" alt="Govrix" onerror="this.style.display='none'" />
+      <img class="logo" src="${logoUrl}" alt="Agentland" onerror="this.style.display='none'" />
       <div>
-        <div class="brand">Govrix<span>.</span></div>
+        <div class="brand">Agentland<span>.</span></div>
         <div class="brand-sub">AI OSS &nbsp;&middot;&nbsp; AI Agent Observability</div>
       </div>
     </div>
     <div class="hdr-right">
       <div class="rtitle">${esc(template.label)}</div>
       <div class="rmeta">Generated ${esc(timestamp)}</div>
-      <div class="rmeta" style="margin-top:2px;opacity:0.6">govrix.dev</div>
+      <div class="rmeta" style="margin-top:2px;opacity:0.6">agentland.in</div>
     </div>
   </div>
 
@@ -358,7 +358,7 @@ export default function ReportsPage() {
       <div class="meta-item"><label>Report</label><div class="val">${esc(template.label)}</div></div>
       <div class="meta-item"><label>Total Records</label><div class="val">${rows.length.toLocaleString()}</div></div>
       <div class="meta-item"><label>Exported</label><div class="val">${fmtDate()}</div></div>
-      <div class="meta-item"><label>Source</label><div class="val">Govrix AI OSS</div></div>
+      <div class="meta-item"><label>Source</label><div class="val">Agentland</div></div>
     </div>
 
     <div class="section-title">Report Data</div>
@@ -366,7 +366,7 @@ export default function ReportsPage() {
     ${rows.length > 200 ? `<p class="truncation-note">Showing first 200 of ${rows.length.toLocaleString()} records. Export as CSV for full dataset.</p>` : ''}
 
     <div class="footer">
-      <span>Govrix AI OSS &mdash; AI Agent Observability Platform</span>
+      <span>Agentland &mdash; AI Agent Observability Platform</span>
       <span>Confidential &middot; ${fmtDate()}</span>
     </div>
   </div>
@@ -443,7 +443,7 @@ export default function ReportsPage() {
         {/* OSS Templates */}
         <div>
           <h3 className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">
-            Govrix AI OSS Reports
+            Agentland Reports
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {TEMPLATES.map(t => {

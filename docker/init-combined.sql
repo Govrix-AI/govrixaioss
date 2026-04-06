@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS events (
 );
 
 COMMENT ON TABLE events IS
-    'Core audit log: every agent request/response intercepted by the Govrix AI OSS proxy.';
+    'Core audit log: every agent request/response intercepted by the Agentland proxy.';
 COMMENT ON COLUMN events.session_id IS
     'Groups related requests in a single agent conversation session.';
 COMMENT ON COLUMN events.lineage_hash IS
@@ -65,7 +65,7 @@ COMMENT ON COLUMN events.pii_detected IS
 -- Migration 002: Create the agents registry table
 --
 -- Tracks identity, capabilities, and aggregate statistics for every AI agent
--- observed by the Govrix AI OSS proxy. The primary key is a VARCHAR agent identifier
+-- observed by the Agentland proxy. The primary key is a VARCHAR agent identifier
 -- (not UUID) because agent IDs come from headers, API key mappings, or source IP.
 --
 -- OSS soft limit: 25 agents. Enforced in application logic, not at DB level.
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS agents (
 COMMENT ON TABLE agents IS
     'Agent registry: identity, lifecycle status, and aggregate statistics for every observed AI agent.';
 COMMENT ON COLUMN agents.id IS
-    'Agent identifier extracted from X-govrix-ai-oss-Agent-Id header, Agent-Name header, API key suffix, or source IP fallback.';
+    'Agent identifier extracted from X-agentland-Agent-Id header, Agent-Name header, API key suffix, or source IP fallback.';
 COMMENT ON COLUMN agents.agent_type IS
     'Framework classification: mcp_client, langchain, crewai, autogen, direct_api, a2a, custom, unknown.';
 COMMENT ON COLUMN agents.status IS
@@ -217,7 +217,7 @@ SELECT add_retention_policy(
 
 COMMENT ON TABLE events IS
     'Core audit log (TimescaleDB hypertable): every agent request/response '
-    'intercepted by the Govrix AI OSS proxy. Partitioned by 1-day chunks, '
+    'intercepted by the Agentland proxy. Partitioned by 1-day chunks, '
     'compressed after 1 day, retained for 7 days (OSS).';
 -- Migration 005: Create all query-path indexes
 --

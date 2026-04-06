@@ -1,6 +1,6 @@
-# Contributing to Govrix AI OSS
+# Contributing to Agentland
 
-Thank you for your interest in contributing. Govrix AI OSS is Apache 2.0 licensed and welcomes contributions of all kinds — bug reports, documentation improvements, new features, and code reviews.
+Thank you for your interest in contributing. Agentland is Apache 2.0 licensed and welcomes contributions of all kinds — bug reports, documentation improvements, new features, and code reviews.
 
 ## Table of Contents
 
@@ -31,8 +31,8 @@ Thank you for your interest in contributing. Govrix AI OSS is Apache 2.0 license
 ### First-time setup
 
 ```bash
-git clone https://github.com/Govrix-AI/govrixaioss.git
-cd govrixaioss
+git clone https://github.com/agentland-ai/agentland.git
+cd agentland
 ./scripts/setup.sh
 ```
 
@@ -57,13 +57,13 @@ Copy `.env.example` to `.env` if it exists, or set these directly:
 
 ```bash
 # Required for the proxy to write events
-DATABASE_URL=postgres://govrix:govrix_ai_oss_dev@localhost:5432/govrix
+DATABASE_URL=postgres://agentland:agentland_dev@localhost:5432/agentland
 
 # Optional — restrict API access
-GOVRIX_AI_OSS_API_KEY=dev-secret
+AGENTLAND_AI_OSS_API_KEY=dev-secret
 
 # Rust log verbosity
-RUST_LOG=govrix_ai_oss_proxy=debug,tower_http=info
+RUST_LOG=agentland_proxy=debug,tower_http=info
 ```
 
 ---
@@ -71,13 +71,13 @@ RUST_LOG=govrix_ai_oss_proxy=debug,tower_http=info
 ## Project Structure
 
 ```
-Govrix AI OSS/
+Agentland/
 ├── crates/
-│   ├── govrix-ai-oss-common/       # Shared types: protocols, events, config, errors
-│   ├── govrix-ai-oss-store/        # Database layer: sqlx queries for events + agents
-│   ├── govrix-ai-oss-proxy/        # Proxy hot path (hyper) + REST API (axum) + policy engine
-│   ├── govrix-ai-oss-cli/          # CLI binary using clap
-│   └── govrix-ai-oss-reports/      # Report templates (minijinja) + PDF generation
+│   ├── agentland-common/       # Shared types: protocols, events, config, errors
+│   ├── agentland-store/        # Database layer: sqlx queries for events + agents
+│   ├── agentland-proxy/        # Proxy hot path (hyper) + REST API (axum) + policy engine
+│   ├── agentland-cli/          # CLI binary using clap
+│   └── agentland-reports/      # Report templates (minijinja) + PDF generation
 ├── dashboard/                  # React 18 + TypeScript + Vite + Recharts
 ├── migrations/                 # SQL migration files (applied by docker-entrypoint-initdb.d)
 ├── config/                     # Default TOML configuration
@@ -89,11 +89,11 @@ Govrix AI OSS/
 
 ### Crate responsibilities
 
-- **govrix-ai-oss-common**: No I/O. Pure types, parsing, serialization, config loading.
-- **govrix-ai-oss-store**: All database access. No HTTP, no business logic.
-- **govrix-ai-oss-proxy**: Orchestrates everything. The `proxy/` module uses hyper (hot path). The `api/` module uses axum (management path). The `policy/` module is call-by-value, no async.
-- **govrix-ai-oss-cli**: Thin wrapper — parses args, calls store or API.
-- **govrix-ai-oss-reports**: Stateless template rendering. Takes data structs, returns bytes.
+- **agentland-common**: No I/O. Pure types, parsing, serialization, config loading.
+- **agentland-store**: All database access. No HTTP, no business logic.
+- **agentland-proxy**: Orchestrates everything. The `proxy/` module uses hyper (hot path). The `api/` module uses axum (management path). The `policy/` module is call-by-value, no async.
+- **agentland-cli**: Thin wrapper — parses args, calls store or API.
+- **agentland-reports**: Stateless template rendering. Takes data structs, returns bytes.
 
 ---
 
@@ -323,7 +323,7 @@ What are the positive and negative consequences?
 
 ## Security
 
-Do not open a public GitHub issue for security vulnerabilities. Email `security@govrix.dev` directly with:
+Do not open a public GitHub issue for security vulnerabilities. Email `security@agentland.in` directly with:
 
 - A description of the vulnerability
 - Steps to reproduce
