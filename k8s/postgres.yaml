@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: govrix
+  namespace: agentland
 spec:
   replicas: 1
   selector:
@@ -18,11 +18,11 @@ spec:
         image: timescale/timescaledb:latest-pg16
         env:
         - name: POSTGRES_DB
-          value: govrix
+          value: agentland
         - name: POSTGRES_USER
-          value: govrix
+          value: agentland
         - name: POSTGRES_PASSWORD
-          value: govrix
+          value: agentland
         ports:
         - containerPort: 5432
 ---
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: govrix
+  namespace: agentland
 spec:
   selector:
     app: postgres

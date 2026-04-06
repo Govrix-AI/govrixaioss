@@ -19,9 +19,9 @@ export const TheReveal: React.FC = () => {
         extrapolateRight: "clamp",
     });
 
-    // Phase 2: "GOVRIX AI OSS" types in (1.5s - 2.5s)
+    // Phase 2: "AGENTLAND AI OSS" types in (1.5s - 2.5s)
     const textStart = fps * 1.5;
-    const fullTitle = "GOVRIX AI OSS";
+    const fullTitle = "AGENTLAND AI OSS";
     const titleChars = Math.min(
         fullTitle.length,
         Math.floor(Math.max(0, frame - textStart) / 2.5)

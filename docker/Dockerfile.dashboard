@@ -1,4 +1,4 @@
-# Govrix Dashboard — Node build + nginx serve
+# Agentland Dashboard — Node build + nginx serve
 # ──────────────────────────────────────────────────────────────────────────────
 # Stage 1: Build React app with pnpm
 # Stage 2: Serve with nginx:alpine
@@ -33,7 +33,7 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    # API proxy to Govrix backend
+    # API proxy to Agentland backend
     location /api/ {
         proxy_pass http://proxy:4001;
         proxy_set_header Host $host;

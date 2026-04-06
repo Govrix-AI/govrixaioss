@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: govrix-ai-oss
-  namespace: govrix
+  name: agentland
+  namespace: agentland
 spec:
   selector:
-    app: govrix-ai-oss
+    app: agentland
   ports:
   - name: proxy
     port: 4000

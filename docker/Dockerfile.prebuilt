@@ -1,10 +1,10 @@
-# Govrix — Pre-built binary Docker image
+# Agentland — Pre-built binary Docker image
 #
-# Uses a binary already compiled on the host (target/release/govrix-ai-oss).
+# Uses a binary already compiled on the host (target/release/agentland).
 # No Rust toolchain needed inside Docker — zero network downloads during build.
 #
 # Usage:
-#   cargo build --release -p govrix-ai-oss-proxy   # build on host first
+#   cargo build --release -p agentland-proxy   # build on host first
 #   make docker-up-local                           # then package + start
 #
 # When to use this vs Dockerfile:
@@ -21,18 +21,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy Linux binary (built by 'make docker-build-local' into .linux-build/)
-COPY .linux-build/release/govrix-ai-oss /usr/local/bin/govrix-ai-oss
+COPY .linux-build/release/agentland /usr/local/bin/agentland
 
 # Copy default config
-COPY config/govrix.default.toml /app/config/govrix.default.toml
+COPY config/agentland.default.toml /app/config/agentland.default.toml
 
 # Non-root user
-RUN useradd -r -s /bin/false govrix
-USER govrix
+RUN useradd -r -s /bin/false agentland
+USER agentland
 
 EXPOSE 4000 4001 9090
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:4001/health || exit 1
 
-ENTRYPOINT ["govrix-ai-oss"]
+ENTRYPOINT ["agentland"]

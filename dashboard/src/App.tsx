@@ -32,7 +32,7 @@ export const useAuth = (): AuthContextValue => {
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    try { return localStorage.getItem('govrix-dark') === 'true' } catch { return false }
+    try { return localStorage.getItem('agentland-dark') === 'true' } catch { return false }
   })
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     } else {
       html.classList.remove('dark')
     }
-    try { localStorage.setItem('govrix-dark', String(darkMode)) } catch {}
+    try { localStorage.setItem('agentland-dark', String(darkMode)) } catch {}
   }, [darkMode])
 
   const toggleDark = () => setDarkMode(d => !d)
@@ -90,13 +90,13 @@ const Sidebar = () => {
       <div className="p-5 border-b border-slate-100">
         <div className="flex items-center gap-3">
           <img
-            src="/govrix-logo.jpeg"
-            alt="Govrix"
+            src="/agentland-logo.jpeg"
+            alt="Agentland"
             className={`h-8 w-8 rounded-lg object-cover logo-themed${darkMode ? ' logo-dark' : ''}`}
           />
           <div>
             <h1 className="text-lg font-bold tracking-tight text-slate-900">
-              Govrix<span className="text-primary">.</span>
+              Agentland<span className="text-primary">.</span>
             </h1>
             <p className="text-[10px] text-slate-400 font-medium -mt-0.5">AI OSS</p>
           </div>

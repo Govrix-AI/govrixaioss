@@ -120,7 +120,7 @@ export const TheClose: React.FC = () => {
                         letterSpacing: 4,
                     }}
                 >
-                    Govrix AI OSS
+                    Agentland
                 </div>
             </div>
 
@@ -167,7 +167,7 @@ export const TheClose: React.FC = () => {
                         fontWeight: 700,
                     }}
                 >
-                    ⭐ github.com/Govrix-AI/govrixai
+                    ⭐ github.com/agentland-ai/agentlandai
                 </div>
                 <div
                     style={{
@@ -176,7 +176,7 @@ export const TheClose: React.FC = () => {
                         color: COLORS.WHITE_DIM,
                     }}
                 >
-                    🌐 govrix.dev
+                    🌐 agentland.in
                 </div>
             </div>
 

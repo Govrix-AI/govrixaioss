@@ -7,7 +7,7 @@ volumes:
 
 # ── Networks ──────────────────────────────────────────────────────────────────
 networks:
-  govrix-ai-oss:
+  agentland:
     driver: bridge
 
 # ── Services ──────────────────────────────────────────────────────────────────
@@ -16,12 +16,12 @@ services:
   # ── PostgreSQL + TimescaleDB ───────────────────────────────────────────────
   postgres:
     image: timescale/timescaledb:latest-pg16
-    container_name: govrix-ai-oss-postgres
+    container_name: agentland-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: govrix
-      POSTGRES_USER: govrix
-      POSTGRES_PASSWORD: govrix_ai_oss_dev
+      POSTGRES_DB: agentland
+      POSTGRES_USER: agentland
+      POSTGRES_PASSWORD: agentland_dev
     ports:
       - "5432:5432"
     volumes:
@@ -29,36 +29,36 @@ services:
       # Run init SQL on first start
       - ../init:/docker-entrypoint-initdb.d:ro
     networks:
-      - govrix-ai-oss
+      - agentland
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U govrix -d govrix"]
+      test: ["CMD-SHELL", "pg_isready -U agentland -d agentland"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 20s
 
-  # ── Govrix AI OSS Proxy + API ──────────────────────────────────────────────────
+  # ── Agentland Proxy + API ──────────────────────────────────────────────────
   proxy:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: govrix-ai-oss-proxy
+    container_name: agentland-proxy
     restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      GOVRIX_DATABASE_URL: postgres://govrix:govrix_ai_oss_dev@postgres:5432/govrix
-      GOVRIX_PROXY_PORT: "4000"
-      GOVRIX_API_PORT: "4001"
-      RUST_LOG: "govrix_ai_oss_proxy=info,tower_http=debug"
-      GOVRIX_PROXY__UPSTREAM_OPENAI: "https://api.openai.com"
+      AGENTLAND_DATABASE_URL: postgres://agentland:agentland_dev@postgres:5432/agentland
+      AGENTLAND_PROXY_PORT: "4000"
+      AGENTLAND_API_PORT: "4001"
+      RUST_LOG: "agentland_proxy=info,tower_http=debug"
+      AGENTLAND_PROXY__UPSTREAM_OPENAI: "https://api.openai.com"
     ports:
       - "4000:4000"   # Proxy (hot path)
       - "4001:4001"   # REST API
       - "9090:9090"   # Prometheus metrics
     networks:
-      - govrix-ai-oss
+      - agentland
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:4001/health || exit 1"]
       interval: 15s
@@ -71,7 +71,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.dashboard
-    container_name: govrix-ai-oss-dashboard
+    container_name: agentland-dashboard
     restart: unless-stopped
     depends_on:
       proxy:
@@ -79,7 +79,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - govrix-ai-oss
+      - agentland
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:3000 || exit 1"]
       interval: 30s

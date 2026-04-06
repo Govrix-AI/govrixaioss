@@ -1,19 +1,19 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/govrix-ai-oss-common",
-    "crates/govrix-ai-oss-store",
-    "crates/govrix-ai-oss-proxy",
-    "crates/govrix-ai-oss-cli",
-    "crates/govrix-ai-oss-reports",
+    "crates/agentland-common",
+    "crates/agentland-store",
+    "crates/agentland-proxy",
+    "crates/agentland-cli",
+    "crates/agentland-reports",
 ]
 
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
-authors = ["Govrix AI OSS Contributors"]
-repository = "https://github.com/Govrix-AI/govrixaioss"
+authors = ["Agentland Contributors"]
+repository = "https://github.com/agentland-ai/agentland"
 rust-version = "1.75"
 
 [workspace.dependencies]
@@ -69,8 +69,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 minijinja = "2"
 
 # Internal crates
-govrix-ai-oss-common = { path = "crates/govrix-ai-oss-common" }
-govrix-ai-oss-store = { path = "crates/govrix-ai-oss-store" }
+agentland-common = { path = "crates/agentland-common" }
+agentland-store = { path = "crates/agentland-store" }
 
 [profile.release]
 opt-level = 3

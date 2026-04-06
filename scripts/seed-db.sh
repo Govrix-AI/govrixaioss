@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Govrix AI OSS — Direct DB seed script (inserts realistic demo data into TimescaleDB)
+# Agentland — Direct DB seed script (inserts realistic demo data into TimescaleDB)
 # ──────────────────────────────────────────────────────────────────────────────
 # Usage: ./scripts/seed-db.sh
 #
@@ -32,13 +32,13 @@ COMPOSE_FILE="$ROOT_DIR/docker/docker-compose.yml"
 MIGRATIONS_DIR="$ROOT_DIR/init"
 
 # ── DB connection settings (match docker-compose.yml) ─────────────────────────
-CONTAINER="govrix-ai-oss-postgres"
-PG_USER="Govrix AI OSS"
-PG_DB="Govrix AI OSS"
-PG_PASS="govrix_ai_oss_dev"
+CONTAINER="agentland-postgres"
+PG_USER="Agentland"
+PG_DB="Agentland"
+PG_PASS="agentland_dev"
 
 echo ""
-echo -e "${BOLD}Govrix AI OSS — Database Seed (Direct Insert)${NC}"
+echo -e "${BOLD}Agentland — Database Seed (Direct Insert)${NC}"
 echo "────────────────────────────────────────────────────────────────"
 info "Project root:    $ROOT_DIR"
 info "Compose file:    $COMPOSE_FILE"
@@ -1028,6 +1028,6 @@ echo "  Agents API: http://localhost:4001/api/v1/agents"
 echo "  Costs API:  http://localhost:4001/api/v1/costs/summary"
 echo ""
 echo "  Quick verify:"
-echo "    docker exec govrix-ai-oss-postgres env PGPASSWORD=govrix_ai_oss_dev \\"
-echo "      psql -U Govrix AI OSS -d Govrix AI OSS -c 'SELECT COUNT(*) FROM events;'"
+echo "    docker exec agentland-postgres env PGPASSWORD=agentland_dev \\"
+echo "      psql -U Agentland -d Agentland -c 'SELECT COUNT(*) FROM events;'"
 echo "────────────────────────────────────────────────────────────────"

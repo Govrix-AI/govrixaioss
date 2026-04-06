@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Govrix — Verification Script
+# Agentland — Verification Script
 # Checks that the repo is correctly configured and services respond.
 # Usage: ./scripts/verify.sh
 # ─────────────────────────────────────────────────────────────────────────────
@@ -36,13 +36,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 cd "$REPO_DIR"
 
-printf "\n${BOLD}Govrix — Verification${NC}\n"
+printf "\n${BOLD}Agentland — Verification${NC}\n"
 printf "═══════════════════════════════════════════════════════════════\n\n"
 
 # ── 1. Source files ───────────────────────────────────────────────────────────
 printf "${BLUE}[1/5]${NC} Source files\n"
 check "Cargo.toml workspace"         "test -f Cargo.toml"
-check "govrix.default.toml"          "test -f config/govrix.default.toml"
+check "agentland.default.toml"          "test -f config/agentland.default.toml"
 check "docker-compose.yml"           "test -f docker/docker-compose.yml"
 check "Dockerfile"                   "test -f docker/Dockerfile"
 check "Dockerfile.dashboard"         "test -f docker/Dockerfile.dashboard"
@@ -83,8 +83,8 @@ printf "${BLUE}[4/5]${NC} Docker configuration\n"
 if command -v docker &>/dev/null && docker info &>/dev/null 2>&1; then
     check "Docker Compose v2"            "docker compose version"
     check "docker-compose.yml valid"     "docker compose -f docker/docker-compose.yml config -q"
-    check "Network name is govrix-ai-oss" "grep -q 'govrix-ai-oss' docker/docker-compose.yml"
-    check "POSTGRES_DB is govrix"        "grep -q 'POSTGRES_DB: govrix' docker/docker-compose.yml"
+    check "Network name is agentland" "grep -q 'agentland' docker/docker-compose.yml"
+    check "POSTGRES_DB is agentland"        "grep -q 'POSTGRES_DB: agentland' docker/docker-compose.yml"
 else
     skip "Docker checks" "Docker not running"
 fi
@@ -92,7 +92,7 @@ echo ""
 
 # ── 5. Live services (optional) ──────────────────────────────────────────────
 printf "${BLUE}[5/5]${NC} Live services (requires 'make docker-up')\n"
-if [ "$(docker ps 2>/dev/null | grep -c 'govrix-ai-oss' || true)" -gt 0 ]; then
+if [ "$(docker ps 2>/dev/null | grep -c 'agentland' || true)" -gt 0 ]; then
     check "API health endpoint"      "curl -sSf http://localhost:4001/health"
     check "Dashboard (port 3000)"    "curl -sSf http://localhost:3000"
     check "Proxy port open (4000)"   "curl -s --max-time 2 http://localhost:4000 >/dev/null"

@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="logo.png" alt="Govrix AI OSS Logo" width="200" />
+  <img src="logo.png" alt="Agentland Logo" width="200" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Govrix_AI_OSS-AI%20Agent%20Governance-8B5CF6?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==&logoColor=white" alt="Govrix AI OSS" />
+  <img src="https://img.shields.io/badge/Agentland-AI%20Agent%20Governance-8B5CF6?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==&logoColor=white" alt="Agentland" />
 </p>
 
-<h1 align="center">🛡️ Govrix AI OSS</h1>
+<h1 align="center">🛡️ Agentland</h1>
 
 <p align="center">
   <b>Open-Source AI Agent Observability, Governance & Compliance Platform</b>
@@ -19,7 +19,7 @@
 <br/>
 
 <p align="center">
-  <b>⭐️ If you find Govrix AI OSS useful, <a href="https://github.com/Govrix-AI/govrixaioss">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
+  <b>⭐️ If you find Agentland useful, <a href="https://github.com/agentland-ai/agentland">please consider giving us a star!</a> It helps the open-source project grow. ⭐️</b>
 </p>
 
 <p align="center">
@@ -27,8 +27,9 @@
 </p>
 
 <p align="center">
-  <a href="https://x.com/govrixai"><img src="https://img.shields.io/badge/X%20(Twitter)-black?style=flat-square&logo=x&logoColor=white" alt="X (Twitter)" /></a>
-  <a href="http://linkedin.com/company/govrix"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://agentland.in"><img src="https://img.shields.io/badge/Website-agentland.in-8B5CF6?style=flat-square&logo=globe&logoColor=white" alt="Website" /></a>
+  <a href="https://x.com/agentlandai"><img src="https://img.shields.io/badge/X%20(Twitter)-black?style=flat-square&logo=x&logoColor=white" alt="X (Twitter)" /></a>
+  <a href="http://linkedin.com/company/agentland"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://discord.gg/kYa8SqQd"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord" /></a>
 </p>
 
@@ -38,27 +39,27 @@
   <a href="https://www.rust-lang.org"><img src="https://img.shields.io/badge/Rust-1.75+-DEA584?style=flat-square&logo=rust&logoColor=white" alt="Rust" /></a>
   <a href="https://react.dev"><img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" /></a>
   <a href="https://www.timescale.com"><img src="https://img.shields.io/badge/TimescaleDB-PG16-FDB515?style=flat-square&logo=postgresql&logoColor=white" alt="TimescaleDB" /></a>
-  <a href="https://github.com/Govrix-AI/govrixaioss/actions/workflows/ci.yml"><img src="https://github.com/Govrix-AI/govrixaioss/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://ghcr.io/govrix-ai/govrix-ai-oss"><img src="https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" /></a>
+  <a href="https://github.com/agentland-ai/agentland/actions/workflows/ci.yml"><img src="https://github.com/agentland-ai/agentland/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://ghcr.io/agentland-ai/agentland"><img src="https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" /></a>
 </p>
 
 <p align="center">
   <a href="#-quick-start"><b>Getting Started</b></a> ·
-  <a href="https://github.com/Govrix-AI/govrixaioss/issues"><b>Issues</b></a> ·
-  <a href="#-govrix-platform-enterprise"><b>Enterprise</b></a>
+  <a href="https://github.com/agentland-ai/agentland/issues"><b>Issues</b></a> ·
+  <a href="#-agentland-platform-enterprise"><b>Enterprise</b></a>
 </p>
 
 <br/>
 
 <p align="center">
-  <img src="imgonline-com-ua-GIF-animation-2aVXJx6VtOK.gif" alt="Govrix AI OSS Dashboard Demo" width="800" />
+  <img src="imgonline-com-ua-GIF-animation-2aVXJx6VtOK.gif" alt="Agentland Dashboard Demo" width="800" />
 </p>
 
 ---
 
-## 🎯 What is Govrix AI OSS?
+## 🎯 What is Agentland?
 
-Govrix AI OSS is a **transparent reverse proxy** that sits between your AI agents and their APIs (OpenAI, Anthropic, etc.). It captures every request and response — **without touching your agent code**.
+Agentland is a **transparent reverse proxy** that sits between your AI agents and their APIs (OpenAI, Anthropic, etc.). It captures every request and response — **without touching your agent code**.
 
 **One env var. Zero code changes. Full visibility.**
 
@@ -71,7 +72,7 @@ Now every AI call is automatically **logged**, **costed**, **scanned for PII**, 
 
 ```text
   ┌─────────────────┐       ┌────────────────────┐       ┌───────────────────┐
-  │                 │       │   🛡️ Govrix AI OSS  │       │                   │
+  │                 │       │   🛡️ Agentland  │       │                   │
   │   Your Agents   │ ────► │     (:4000)        │ ────► │  OpenAI / Claude  │
   │                 │       └────────┬───────────┘       │                   │
   └─────────────────┘                │                   └───────────────────┘
@@ -82,7 +83,7 @@ Now every AI call is automatically **logged**, **costed**, **scanned for PII**, 
                             └────────────────┘
 ```
 
-## 🌟 Why Govrix?
+## 🌟 Why Agentland?
 
 - **Zero Friction** — No SDKs to install. Just change one environment variable (`OPENAI_BASE_URL`).
 - **Complete Autonomy** — Agents are auto-discovered. No manual registration required.
@@ -132,10 +133,10 @@ Now every AI call is automatically **logged**, **costed**, **scanned for PII**, 
 
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/agentland-ai/agentland/main/install.sh | bash
 
 # Windows (PowerShell as Admin)
-iwr -useb https://raw.githubusercontent.com/Govrix-AI/govrixaioss/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/agentland-ai/agentland/main/install.ps1 | iex
 ```
 
 ### Option B: Pre-built Docker Images (no Rust toolchain needed)
@@ -144,25 +145,25 @@ Images are published to GitHub Container Registry on every push to `main`:
 
 ```bash
 # Pull the proxy
-docker pull ghcr.io/govrix-ai/govrix-ai-oss:latest
+docker pull ghcr.io/agentland-ai/agentland:latest
 
 # Pull the dashboard
-docker pull ghcr.io/govrix-ai/govrix-ai-oss-dashboard:latest
+docker pull ghcr.io/agentland-ai/agentland-dashboard:latest
 ```
 
 Both images are multi-platform (`linux/amd64` + `linux/arm64`). Then start everything with:
 
 ```bash
-git clone https://github.com/Govrix-AI/govrixaioss.git
-cd govrixaioss
+git clone https://github.com/agentland-ai/agentland.git
+cd agentland
 docker compose -f docker/docker-compose.yml up -d
 ```
 
 ### Option C: Clone & Build from Source
 
 ```bash
-git clone https://github.com/Govrix-AI/govrixaioss.git
-cd govrixaioss
+git clone https://github.com/agentland-ai/agentland.git
+cd agentland
 docker compose -f docker/docker-compose.yml up -d
 ```
 
@@ -175,15 +176,15 @@ docker compose -f docker/docker-compose.yml up -d
 | **Dashboard**   | `3000` | Web UI — open in browser       |
 | **TimescaleDB** | `5432` | Event storage (PostgreSQL 16)  |
 
-### 🔌 Add Govrix to Your Existing Agent Setup (Step-by-Step)
+### 🔌 Add Agentland to Your Existing Agent Setup (Step-by-Step)
 
-Govrix AI OSS works as a **transparent reverse proxy**. You change **one line** in your existing code — the API base URL — and every request flows through Govrix for logging, cost tracking, and compliance. **Your agent code, prompts, and logic stay exactly the same.**
+Agentland works as a **transparent reverse proxy**. You change **one line** in your existing code — the API base URL — and every request flows through Agentland for logging, cost tracking, and compliance. **Your agent code, prompts, and logic stay exactly the same.**
 
-> **How it works:** Instead of your agent calling `api.openai.com` directly, it calls `localhost:4000` (Govrix). Govrix logs the request and forwards it to the real API. The response comes back through Govrix and is returned to your agent unchanged.
+> **How it works:** Instead of your agent calling `api.openai.com` directly, it calls `localhost:4000` (Agentland). Agentland logs the request and forwards it to the real API. The response comes back through Agentland and is returned to your agent unchanged.
 
 ---
 
-#### Step 1 — Make sure Govrix AI OSS is running
+#### Step 1 — Make sure Agentland is running
 
 ```bash
 # If you haven't started it yet:
@@ -216,14 +217,14 @@ response = client.chat.completions.create(
 )
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```python
 from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-...",                                                   # ← keep your real key
     base_url="http://localhost:4000/proxy/openai/v1",                   # ← ADD THIS LINE
-    default_headers={"x-govrix-ai-oss-agent-id": "my-agent-name"}       # ← OPTIONAL: name your agent
+    default_headers={"x-agentland-agent-id": "my-agent-name"}       # ← OPTIONAL: name your agent
 )
 response = client.chat.completions.create(
     model="gpt-4",
@@ -251,14 +252,14 @@ message = client.messages.create(
 )
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```python
 from anthropic import Anthropic
 
 client = Anthropic(
     api_key="sk-ant-...",                                                # ← keep your real key
     base_url="http://localhost:4000/proxy/anthropic/v1",                 # ← ADD THIS LINE
-    default_headers={"x-govrix-ai-oss-agent-id": "my-claude-agent"}      # ← OPTIONAL
+    default_headers={"x-agentland-agent-id": "my-claude-agent"}      # ← OPTIONAL
 )
 message = client.messages.create(
     model="claude-sonnet-4-20250514",
@@ -267,7 +268,7 @@ message = client.messages.create(
 )
 ```
 
-**What changed?** Added `base_url` pointing to Govrix's Anthropic proxy endpoint.
+**What changed?** Added `base_url` pointing to Agentland's Anthropic proxy endpoint.
 
 </details>
 
@@ -282,7 +283,7 @@ llm = ChatOpenAI(model="gpt-4", api_key="sk-...")
 response = llm.invoke("Hello")
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```python
 from langchain_openai import ChatOpenAI
 
@@ -290,7 +291,7 @@ llm = ChatOpenAI(
     model="gpt-4",
     api_key="sk-...",
     base_url="http://localhost:4000/proxy/openai/v1",              # ← ADD THIS LINE
-    default_headers={"x-govrix-ai-oss-agent-id": "langchain-agent"} # ← OPTIONAL
+    default_headers={"x-agentland-agent-id": "langchain-agent"} # ← OPTIONAL
 )
 response = llm.invoke("Hello")
 ```
@@ -313,14 +314,14 @@ const completion = await client.chat.completions.create({
 });
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```javascript
 import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: "sk-...",
   baseURL: "http://localhost:4000/proxy/openai/v1",                   // ← ADD THIS LINE
-  defaultHeaders: { "x-govrix-ai-oss-agent-id": "my-node-agent" },    // ← OPTIONAL
+  defaultHeaders: { "x-agentland-agent-id": "my-node-agent" },    // ← OPTIONAL
 });
 const completion = await client.chat.completions.create({
   model: "gpt-4",
@@ -341,14 +342,14 @@ import { ChatOpenAI } from "@langchain/openai";
 const model = new ChatOpenAI({ openAIApiKey: "sk-..." });
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```javascript
 import { ChatOpenAI } from "@langchain/openai";
 const model = new ChatOpenAI({
   openAIApiKey: "sk-...",
   configuration: {
     baseURL: "http://localhost:4000/proxy/openai/v1",                 // ← ADD THIS LINE
-    defaultHeaders: { "x-govrix-ai-oss-agent-id": "langchain-agent" } // ← OPTIONAL
+    defaultHeaders: { "x-agentland-agent-id": "langchain-agent" } // ← OPTIONAL
   }
 });
 ```
@@ -368,7 +369,7 @@ llm = LLM(model="gpt-4", api_key="sk-...")
 agent = Agent(role="Researcher", llm=llm, ...)
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```python
 from crewai import Agent, LLM
 
@@ -422,12 +423,12 @@ curl https://api.openai.com/v1/chat/completions \
   -d '{"model":"gpt-4","messages":[{"role":"user","content":"Hello"}]}'
 ```
 
-**✅ AFTER (through Govrix AI OSS):**
+**✅ AFTER (through Agentland):**
 ```bash
 curl http://localhost:4000/proxy/openai/v1/chat/completions \
   -H "Authorization: Bearer sk-..." \
   -H "Content-Type: application/json" \
-  -H "x-govrix-ai-oss-agent-id: test-agent" \
+  -H "x-agentland-agent-id: test-agent" \
   -d '{"model":"gpt-4","messages":[{"role":"user","content":"Hello"}]}'
 ```
 
@@ -469,8 +470,8 @@ curl http://localhost:4000/proxy/openai/v1/chat/completions \
 | Problem                           | Solution                                                                       |
 | --------------------------------- | ------------------------------------------------------------------------------ |
 | `Connection refused` on port 4000 | Make sure Docker containers are running: `docker ps`                           |
-| Agent not appearing in dashboard  | Wait 5 seconds, then refresh. Check `x-govrix-ai-oss-agent-id` header           |
-| API key errors                    | Your real API key must be valid — Govrix forwards it unchanged                 |
+| Agent not appearing in dashboard  | Wait 5 seconds, then refresh. Check `x-agentland-agent-id` header           |
+| API key errors                    | Your real API key must be valid — Agentland forwards it unchanged                 |
 | Slow responses                    | First request may take ~1s (cold start). Subsequent requests add <5ms overhead |
 | Dashboard blank on `:3000`        | Ensure the dashboard container is running: `docker compose logs dashboard`     |
 
@@ -518,8 +519,8 @@ rustc --version && cargo --version && node --version && pnpm --version && docker
 
 ```bash
 # 1. Clone
-git clone https://github.com/Govrix-AI/govrixaioss.git
-cd govrixaioss
+git clone https://github.com/agentland-ai/agentland.git
+cd agentland
 
 # 2. Start the database
 docker compose -f docker/docker-compose.yml up -d postgres
@@ -528,8 +529,8 @@ docker compose -f docker/docker-compose.yml up -d postgres
 cargo build --release --workspace
 
 # 4. Run the proxy
-export DATABASE_URL=postgres://govrix:govrix_ai_oss_dev@localhost:5432/govrix
-RUST_LOG=info ./target/release/govrix-ai-oss
+export DATABASE_URL=postgres://agentland:agentland_dev@localhost:5432/agentland
+RUST_LOG=info ./target/release/agentland
 
 # 5. Run the dashboard (separate terminal)
 cd dashboard
@@ -561,13 +562,13 @@ make ci                            # Full CI pipeline
 ## 🗂️ Project Structure
 
 ```
-govrix-ai-oss/
+agentland/
 ├── crates/
-│   ├── govrix-ai-oss-common/       # Shared types, config, parsing
-│   ├── govrix-ai-oss-store/        # Database layer (sqlx)
-│   ├── govrix-ai-oss-proxy/        # Proxy (hyper) + API (axum) + policy engine
-│   ├── govrix-ai-oss-cli/          # CLI (clap)
-│   └── govrix-ai-oss-reports/      # Compliance report templates
+│   ├── agentland-common/       # Shared types, config, parsing
+│   ├── agentland-store/        # Database layer (sqlx)
+│   ├── agentland-proxy/        # Proxy (hyper) + API (axum) + policy engine
+│   ├── agentland-cli/          # CLI (clap)
+│   └── agentland-reports/      # Compliance report templates
 ├── dashboard/                     # React 18 + Vite + Recharts
 ├── docker/                        # Dockerfiles + compose
 ├── init/                          # SQL migrations
@@ -581,7 +582,7 @@ govrix-ai-oss/
 
 ## 🏗️ Technical Architecture (Bird's-Eye View)
 
-Here's how Govrix AI OSS processes your agent traffic with near-zero latency overhead:
+Here's how Agentland processes your agent traffic with near-zero latency overhead:
 
 ```mermaid
 flowchart TB
@@ -591,7 +592,7 @@ flowchart TB
         Browser["💻 Web Dashboard\n(React + Vite)"]
     end
 
-    subgraph GovrixAIOSS ["🛡️ Govrix AI OSS (Rust)"]
+    subgraph AgentlandAIOSS ["🛡️ Agentland (Rust)"]
         direction TB
         Proxy["⚡ Proxy Server\n(hyper, port 4000)\nHot-path routing"]
         API["⚙️ Management API\n(axum, port 4001)\nREST & Config"]
@@ -641,9 +642,9 @@ flowchart TB
 
 ---
 
-## 🏢 Govrix Platform (Enterprise)
+## 🏢 Agentland Platform (Enterprise)
 
-Govrix AI OSS gives you **visibility**. When you need **control**:
+Agentland gives you **visibility**. When you need **control**:
 
 - **Real-time PII masking** — redact data before it reaches APIs
 - **Policy enforcement** — block budget overruns, require human approval
@@ -653,7 +654,7 @@ Govrix AI OSS gives you **visibility**. When you need **control**:
 - **Unlimited scale** — no caps, multi-cluster, Kubernetes Helm charts
 
 <p align="center">
-  <a href="mailto:hello@govrix.dev">Contact sales</a>
+  <a href="mailto:hello@agentland.in">Contact sales</a>
 </p>
 
 <br/>
@@ -681,7 +682,7 @@ make dev               # start everything with hot-reload
 ---
 
 <p align="center">
-  <a href="https://github.com/Govrix-AI/govrixaioss">⭐ Star on GitHub</a> · <a href="https://github.com/Govrix-AI/govrixaioss/issues">🐛 Report Bug</a> · <a href="https://github.com/Govrix-AI/govrixaioss/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
+  <a href="https://github.com/agentland-ai/agentland">⭐ Star on GitHub</a> · <a href="https://github.com/agentland-ai/agentland/issues">🐛 Report Bug</a> · <a href="https://github.com/agentland-ai/agentland/issues">💡 Request Feature</a> · <a href="CONTRIBUTING.md">🤝 Contribute</a>
 </p>
 
-<p align="center"><sub>Govrix AI is an independent continuation of an earlier collaborative prototype.</sub></p>
+<p align="center"><sub>Agentland AI is an independent continuation of an earlier collaborative prototype.</sub></p>

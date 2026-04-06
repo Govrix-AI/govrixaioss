@@ -1,6 +1,6 @@
-# Govrix AI OSS Dashboard
+# Agentland Dashboard
 
-A React + Vite dashboard for [Govrix AI OSS](https://github.com/Govrix-AI/govrixaioss) — open-source AI agent observability.
+A React + Vite dashboard for [Agentland](https://github.com/agentland-ai/agentland) — open-source AI agent observability.
 
 ## Pages
 
@@ -30,13 +30,13 @@ pnpm install
 pnpm dev        # starts at http://localhost:3000
 ```
 
-The Vite dev server proxies `/api`, `/health`, and `/metrics` to the Govrix AI OSS API server at `http://localhost:8080`.
+The Vite dev server proxies `/api`, `/health`, and `/metrics` to the Agentland API server at `http://localhost:8080`.
 
 Make sure the proxy is running before starting the dashboard:
 
 ```bash
 # In the repo root:
-cargo run --bin govrix-ai-oss-server
+cargo run --bin agentland-server
 ```
 
 ## Production Build

@@ -16,11 +16,11 @@ docs/
 !dashboard/README.md
 
 # Enterprise crates (not part of OSS build)
-crates/govrix-common/
-crates/govrix-identity/
-crates/govrix-keygen/
-crates/govrix-policy/
-crates/govrix-server/
+crates/agentland-oss-common/
+crates/agentland-identity/
+crates/agentland-keygen/
+crates/agentland-policy/
+crates/agentland-server/
 
 # IDE / local
 .vscode/
